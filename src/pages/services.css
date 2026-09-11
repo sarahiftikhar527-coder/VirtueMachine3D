@@ -1,0 +1,11 @@
+.detail-row__code {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--green-deep);
+}
+
+@media (max-width: 640px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+}

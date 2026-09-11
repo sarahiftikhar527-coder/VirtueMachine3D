@@ -1,0 +1,55 @@
+:root {
+  /* ---- Palette: neutrals ---- */
+  --white: #ffffff;
+  --paper: #f6f7f9;
+  --mist: #eceef2;
+  --line: #e3e6ea;
+  --line-dark: rgba(255, 255, 255, 0.09);
+
+  --navy-950: #060a11;
+  --navy-900: #0a0f18;
+  --navy-850: #0d1420;
+  --navy-800: #111a2a;
+  --navy-700: #17233a;
+  --navy-600: #1f2f4d;
+
+  --graphite: #2c333c;
+  --charcoal: #1d2127;
+  --steel: #8b95a3;
+  --metal: #aeb7c2;
+  --ink: #0b0f16;
+  --body: #4b5563;
+
+  /* ---- Palette: green accent (used strategically, never as surface) ---- */
+  --green: #16c868;
+  --green-deep: #0f9e51;
+  --green-dark: #0b7a40;
+  --green-ink: #052e1a;
+  --green-soft: rgba(22, 200, 104, 0.12);
+  --green-line: rgba(22, 200, 104, 0.4);
+  --green-glow: rgba(22, 200, 104, 0.45);
+
+  /* ---- Typography ---- */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* ---- Layout ---- */
+  --container: 1240px;
+  --gutter: clamp(18px, 4vw, 24px);
+  --section: clamp(76px, 9vw, 124px);
+  --navbar-h: 78px;
+
+  /* ---- Radii ---- */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(10, 15, 24, 0.06), 0 2px 8px rgba(10, 15, 24, 0.05);
+  --shadow-md: 0 12px 32px -12px rgba(10, 15, 24, 0.18);
+  --shadow-lg: 0 24px 64px -24px rgba(10, 15, 24, 0.3);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

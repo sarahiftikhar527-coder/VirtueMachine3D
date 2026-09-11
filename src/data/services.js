@@ -1,0 +1,46 @@
+export const SERVICES = [
+  {
+    id: 'rapid-prototyping',
+    code: 'SRV-01',
+    title: 'Rapid Prototyping',
+    desc: 'Compress development cycles from months to days. Upload CAD on Monday, test a physical model by Friday — with engineering feedback included at every iteration.',
+    deliverables: ['24–72h turnaround', 'DFM feedback', 'Multi-material options', 'Surface finishing'],
+    featured: true,
+  },
+  {
+    id: 'custom-3d-printing',
+    code: 'SRV-02',
+    title: 'Custom 3D Printing',
+    desc: 'One-offs, replacements and custom geometries across six print technologies — matched to the right machine for your part, not the other way around.',
+    deliverables: ['6 technologies', '50+ materials', 'Same-day quoting'],
+  },
+  {
+    id: 'product-development',
+    code: 'SRV-03',
+    title: 'Product Development',
+    desc: 'From napkin sketch to shelf-ready product. Our engineers co-design, prototype and validate alongside your team.',
+    deliverables: ['Design support', 'Fit & function tests', 'Design for manufacturing'],
+  },
+  {
+    id: 'functional-prototypes',
+    code: 'SRV-04',
+    title: 'Functional Prototypes',
+    desc: 'Parts that behave like the real thing — load-bearing, heat-exposed, flex-tested. Validated before you cut steel.',
+    deliverables: ['Carbon-fiber options', 'Insert fitting', 'Tolerance reports'],
+  },
+  {
+    id: 'engineering-parts',
+    code: 'SRV-05',
+    title: 'Engineering Parts',
+    desc: 'Jigs, fixtures, brackets and enclosures printed to drawing with first-article inspection and full traceability.',
+    deliverables: ['CMM inspection', 'FAI reports', 'Material certs'],
+  },
+  {
+    id: 'small-batch',
+    code: 'SRV-06',
+    title: 'Small-Batch Manufacturing',
+    desc: 'Bridge production from 10 to 10,000 units. A calibrated fleet with redundant printers keeps your lead times honest.',
+    deliverables: ['10–10K units', 'QC on every unit', 'Scheduled releases'],
+    wide: true,
+  },
+]
