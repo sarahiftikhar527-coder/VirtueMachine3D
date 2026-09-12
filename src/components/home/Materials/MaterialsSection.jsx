@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./materials.css";
 
+import boltImage from "../../../assets/images/Home/Gallery/01-bolt.webp";
+import printerImage from "../../../assets/images/Home/Gallery/02-printer.webp";
+import gearsImage from "../../../assets/images/Home/Gallery/03-gears.webp";
+import dentalImage from "../../../assets/images/Home/Gallery/04-dental.webp";
+import braceImage from "../../../assets/images/Home/Gallery/05-brace.webp";
+import boatImage from "../../../assets/images/Home/Gallery/06-boat.webp";
+import characterImage from "../../../assets/images/Home/Gallery/07-character.webp";
+import organicImage from "../../../assets/images/Home/Gallery/08-organic.webp";
+
 const statsData = [
   {
     id: 1,
@@ -31,56 +40,56 @@ const statsData = [
 const materials = [
   {
     id: 1,
-    image: "/images/gallery/01-bolt.jpg",
+    image: boltImage,
     title: "Mechanical Bolt Prototype",
     alt: "Hands holding a grey textured mechanical bolt prototype",
     size: "large",
   },
   {
     id: 2,
-    image: "/images/gallery/02-printer.jpg",
+    image: printerImage,
     title: "Plastic Vase / Product Prototypes",
     alt: "3D printer working on a plastic product prototype",
     size: "small",
   },
   {
     id: 3,
-    image: "/images/gallery/03-gears.jpg",
+    image: gearsImage,
     title: "Precision Gears",
     alt: "Green 3D printed gears and components",
     size: "small",
   },
   {
     id: 4,
-    image: "/images/gallery/04-dental.jpg",
+    image: dentalImage,
     title: "Dental Cast Prototype",
     alt: "Hands holding a blue medical dental cast model",
     size: "large",
   },
   {
     id: 5,
-    image: "/images/gallery/05-brace.jpg",
+    image: braceImage,
     title: "Ergonomic Medical Brace",
     alt: "White ergonomic lattice medical brace structure",
     size: "large",
   },
   {
     id: 6,
-    image: "/images/gallery/06-boat.jpg",
+    image: boatImage,
     title: "3D Printed Boat",
     alt: "Small red 3D printed boat miniature",
     size: "small",
   },
   {
     id: 7,
-    image: "/images/gallery/07-character.jpg",
+    image: characterImage,
     title: "Character Figurine",
     alt: "Green 3D printed character figurine",
     size: "large",
   },
   {
     id: 8,
-    image: "/images/gallery/08-organic.jpg",
+    image: organicImage,
     title: "Organic Print Sample",
     alt: "White organic 3D printed sample on a build plate",
     size: "small",
@@ -89,6 +98,7 @@ const materials = [
 
 function AnimatedNumber({ value, start }) {
   const [count, setCount] = useState(0);
+  const frameRef = useRef(null);
 
   useEffect(() => {
     if (!start) {
@@ -96,37 +106,33 @@ function AnimatedNumber({ value, start }) {
       return;
     }
 
-    let startTime = null;
-    let animationFrame;
+    const duration = 900;
+    const startTime = performance.now();
 
-    const duration = 1250;
-
-    const animateNumber = (currentTime) => {
-      if (!startTime) {
-        startTime = currentTime;
-      }
-
+    const animate = (currentTime) => {
       const progress = Math.min(
         (currentTime - startTime) / duration,
         1
       );
 
-      const easedProgress =
-        1 - Math.pow(1 - progress, 3);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const nextValue = Math.floor(easedProgress * value);
 
-      setCount(Math.floor(easedProgress * value));
+      setCount(nextValue);
 
       if (progress < 1) {
-        animationFrame = requestAnimationFrame(animateNumber);
+        frameRef.current = requestAnimationFrame(animate);
       } else {
         setCount(value);
       }
     };
 
-    animationFrame = requestAnimationFrame(animateNumber);
+    frameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      cancelAnimationFrame(animationFrame);
+      if (frameRef.current) {
+        cancelAnimationFrame(frameRef.current);
+      }
     };
   }, [value, start]);
 
@@ -146,10 +152,14 @@ export default function MaterialsSection() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setStatsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setStatsVisible(true);
+          observer.disconnect();
+        }
       },
       {
-        threshold: 0.35,
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 
@@ -218,7 +228,7 @@ export default function MaterialsSection() {
       <div className="materials__gallery">
         <div className="materials__gallery-container">
           <div className="materials__grid">
-            {materials.map((item) => (
+            {materials.map((item, index) => (
               <article
                 key={item.id}
                 className={`materials__item materials__item--${item.size}`}
@@ -228,7 +238,8 @@ export default function MaterialsSection() {
                     src={item.image}
                     alt={item.alt}
                     className="materials__image"
-                    loading="lazy"
+                    loading={index < 4 ? "eager" : "lazy"}
+                    decoding="async"
                   />
 
                   <div className="materials__overlay" />

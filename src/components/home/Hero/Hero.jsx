@@ -1,10 +1,8 @@
-import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Button from "../../common/Button.jsx";
 import Marquee from "../../common/Marquee.jsx";
 import { HERO_TICKER } from "../../../data/stats.js";
-import heroVideo from "../../../assets/videos/Home/Hero/hero-bg.mp4";
-import heroVideo2 from "../../../assets/videos/Home/Hero/hero-bg-2.mp4";
+import { useHeroVideo } from "./PersistentHeroVideo.jsx";
 import "./hero.css";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -81,57 +79,13 @@ const paragraphWords = [
 ];
 
 export default function Hero() {
-  const videoRef = useRef(null);
-  const video2Ref = useRef(null);
-  const [videoFinished, setVideoFinished] = useState(false);
-
-  const handleVideoEnd = () => {
-    setVideoFinished(true);
-
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-
-    if (video2Ref.current) {
-      video2Ref.current.currentTime = 0;
-      video2Ref.current.play().catch(() => {});
-    }
-  };
+  const { videoFinished } = useHeroVideo();
 
   return (
     <section
       className={`hero ${videoFinished ? "hero--revealed" : ""}`}
       aria-label="Virtue Mechanics introduction"
     >
-      <div className="hero__bg" aria-hidden="true">
-        <video
-          ref={videoRef}
-          className={`hero__background-video hero__background-video--one ${
-            videoFinished ? "hero__background-video--hidden" : ""
-          }`}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={handleVideoEnd}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-
-        <video
-          ref={video2Ref}
-          className={`hero__background-video hero__background-video--two ${
-            videoFinished ? "hero__background-video--active" : ""
-          }`}
-          muted
-          playsInline
-          loop
-          preload="auto"
-        >
-          <source src={heroVideo2} type="video/mp4" />
-        </video>
-      </div>
-
       <div className="container hero__inner">
         <motion.div
           className="hero__content"

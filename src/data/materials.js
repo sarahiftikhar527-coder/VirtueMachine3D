@@ -1,5 +1,3 @@
-/* Material swatch styles are rendered with layered CSS gradients.
-   fields: strength / temp / flex are 0-100 for animated spec bars. */
 export const MATERIALS = [
   {
     id: 'pla',

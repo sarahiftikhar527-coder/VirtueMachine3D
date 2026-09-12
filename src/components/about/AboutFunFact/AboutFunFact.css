@@ -1,0 +1,261 @@
+.about-funfact {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  min-height: 400px;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  isolation: isolate;
+  color: #ffffff;
+}
+
+.about-funfact__background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.about-funfact__content {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 80px));
+  height: 100%;
+  min-height: 0;
+  margin: 0 auto !important;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 0.9fr);
+  column-gap: 60px;
+  align-content: center;
+  align-items: center;
+}
+
+.about-funfact__eyebrow {
+  grid-column: 1;
+  margin: 0 0 9px;
+  color: #39d47b;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.about-funfact__title {
+  grid-column: 1;
+  width: min(560px, 100%);
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(32px, 3.5vw, 48px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+}
+
+.about-funfact__description {
+  grid-column: 1;
+  width: min(560px, 100%);
+  margin: 13px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.about-funfact__stats {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  row-gap: 32px;
+}
+
+.about-funfact__stat {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.about-funfact__number {
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  font-size: clamp(48px, 4.6vw, 70px);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.about-funfact__number span {
+  margin-left: 4px;
+  color: #ffffff;
+  font-size: 0.65em;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.about-funfact__stat p {
+  width: 100%;
+  margin: 7px 0 0;
+  padding: 0;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+@media (max-width: 1050px) {
+  .about-funfact {
+    height: 400px;
+    min-height: 400px;
+  }
+
+  .about-funfact__content {
+    width: min(920px, calc(100% - 50px));
+    height: 100%;
+    padding: 25px 0;
+    column-gap: 40px;
+  }
+
+  .about-funfact__stats {
+    max-width: 450px;
+    column-gap: 28px;
+    row-gap: 30px;
+  }
+
+  .about-funfact__number {
+    font-size: clamp(44px, 5.2vw, 64px);
+  }
+
+  .about-funfact__stat p {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-funfact {
+    height: auto;
+    min-height: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .about-funfact__background {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+  }
+
+  .about-funfact__content {
+    width: calc(100% - 36px);
+    height: auto;
+    min-height: 0;
+    margin: 0 auto !important;
+    padding: 40px 0 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-funfact__eyebrow {
+    margin: 0 0 9px;
+  }
+
+  .about-funfact__title {
+    width: 100%;
+    margin: 0;
+    font-size: clamp(30px, 7.5vw, 44px);
+  }
+
+  .about-funfact__description {
+    width: 100%;
+    max-width: 570px;
+    margin: 13px 0 0;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .about-funfact__stats {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px 0 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 35px;
+    row-gap: 30px;
+  }
+
+  .about-funfact__number {
+    font-size: clamp(44px, 9vw, 64px);
+  }
+
+  .about-funfact__stat p {
+    margin: 7px 0 0;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-funfact {
+    height: auto;
+    min-height: 0;
+  }
+
+  .about-funfact__background {
+    width: 100%;
+    height: 100%;
+  }
+
+  .about-funfact__content {
+    width: calc(100% - 28px);
+    padding: 35px 0 38px;
+  }
+
+  .about-funfact__eyebrow {
+    margin-bottom: 8px;
+    font-size: 9px;
+  }
+
+  .about-funfact__title {
+    font-size: clamp(28px, 9.5vw, 40px);
+  }
+
+  .about-funfact__description {
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.65;
+  }
+
+  .about-funfact__stats {
+    margin-top: 28px;
+    column-gap: 20px;
+    row-gap: 27px;
+  }
+
+  .about-funfact__number {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+
+  .about-funfact__number span {
+    margin-left: 2px;
+  }
+
+  .about-funfact__stat p {
+    margin-top: 6px;
+    font-size: 10px;
+  }
+}

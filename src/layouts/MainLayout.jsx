@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/layout/Navbar/Navbar.jsx";
 import Footer from "../components/layout/Footer/Footer.jsx";
+import { HeroVideoProvider } from "../components/home/Hero/PersistentHeroVideo.jsx";
 
 export default function MainLayout() {
   const { pathname, hash } = useLocation();
@@ -28,12 +29,14 @@ export default function MainLayout() {
   }, [pathname, hash]);
 
   return (
-    <>
+    <HeroVideoProvider>
       <Navbar />
+
       <main>
         <Outlet />
       </main>
+
       <Footer />
-    </>
+    </HeroVideoProvider>
   );
 }

@@ -1,10 +1,11 @@
 .hero {
   position: relative;
+  z-index: 1;
   min-height: 100svh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: #05090d;
+  background: transparent;
   color: #fff;
   padding-top: var(--navbar-h);
 }
