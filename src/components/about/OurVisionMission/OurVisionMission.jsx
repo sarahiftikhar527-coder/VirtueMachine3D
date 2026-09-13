@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import visionMain from "../../../assets/images/About/VisionAndMission/Vision-main.webp";
 import visionSecondary from "../../../assets/images/About/VisionAndMission/Vision-secondary.webp";
-import "./ourVisionMission.css";
+import "./OurVisionMission.css";
 
 const EASE = [0.22, 1, 0.36, 1];
 

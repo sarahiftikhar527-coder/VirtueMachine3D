@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import "./servicesProcess.css"
+import "./ServicesProcess.css"
 
 import processImage from "../../../assets/images/Services/Process/process.webp"
 

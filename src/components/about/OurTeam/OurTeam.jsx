@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import "./ourTeam.css";
+import "./OurTeam.css";
 
 import teamOne from "../../../assets/images/About/Team/team-1.webp";
 import teamTwo from "../../../assets/images/About/Team/team-2.webp";
