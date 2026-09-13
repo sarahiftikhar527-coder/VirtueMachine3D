@@ -31,8 +31,10 @@ function FooterGear({ className, teeth = 14 }) {
     ]
 
     points.forEach(([radius, currentAngle], pointIndex) => {
-      const x = 110 + Math.cos(currentAngle) * radius
-      const y = 110 + Math.sin(currentAngle) * radius
+      const x =
+        110 + Math.cos(currentAngle) * radius
+      const y =
+        110 + Math.sin(currentAngle) * radius
 
       path += `${
         i === 0 && pointIndex === 0 ? "M" : "L"
@@ -147,7 +149,10 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div className="footer__gears" aria-hidden="true">
+      <div
+        className="footer__gears"
+        aria-hidden="true"
+      >
         <FooterGear
           className="footer__gear footer__gear--left"
           teeth={12}
@@ -167,15 +172,19 @@ export default function Footer() {
       <div className="container footer__container">
         <div className="footer__top">
           <div className="footer__brand">
-            <Link to="/" className="footer__logo">
+            <Link
+              to="/"
+              className="footer__logo"
+            >
               <span>VIRTUE</span>
               <strong>MECHANICS</strong>
             </Link>
 
             <p>
               Precision 3D printing and advanced
-              manufacturing solutions for prototypes,
-              products, and production-ready parts.
+              manufacturing solutions for
+              prototypes, products, and
+              production-ready parts.
             </p>
 
             <div className="footer__socials">
@@ -243,7 +252,8 @@ export default function Footer() {
                 <span className="footer__address">
                   <MapPin size={15} />
                   <span>
-                    42 Precision Way, Austin, TX 78701
+                    42 Precision Way, Austin, TX
+                    78701
                   </span>
                 </span>
               </li>
@@ -261,7 +271,8 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <span className="footer__copyright">
-            © 2026 VIRTUE MECHANICS LLC — ALL RIGHTS RESERVED
+            © 2026 VIRTUE MECHANICS LLC — ALL
+            RIGHTS RESERVED
           </span>
 
           <div className="footer__legal">

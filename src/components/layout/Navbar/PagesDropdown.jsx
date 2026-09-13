@@ -106,7 +106,7 @@ export default function PagesDropdown({
 
               return (
                 <motion.div
-                  key={page.to}
+                  key={`${page.to}-${index}`}
                   initial={{
                     opacity: 0,
                     y: 8,
@@ -148,10 +148,6 @@ export default function PagesDropdown({
                       <span className="pagesmenu__desc">
                         {page.desc}
                       </span>
-
-                      <span className="pagesmenu__code mono">
-                        {page.code}
-                      </span>
                     </span>
                   </Link>
                 </motion.div>
@@ -160,10 +156,6 @@ export default function PagesDropdown({
           </div>
 
           <div className="pagesmenu__foot">
-            <span>
-              PG-01 → PG-06 · SITE INDEX
-            </span>
-
             <Link
               to="/contact"
               onClick={onClose}

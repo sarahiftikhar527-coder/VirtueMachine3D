@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/layout/Navbar/Navbar.jsx";
 import Footer from "../components/layout/Footer/Footer.jsx";
+import FloatingActions from "../components/FloatingActions/FloatingActions.jsx";
 import { HeroVideoProvider } from "../components/home/Hero/PersistentHeroVideo.jsx";
 
 export default function MainLayout() {
@@ -37,6 +38,8 @@ export default function MainLayout() {
       </main>
 
       <Footer />
+
+      <FloatingActions />
     </HeroVideoProvider>
   );
 }
