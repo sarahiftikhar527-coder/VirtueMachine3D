@@ -1,73 +1,42 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
-import {
-  Boxes,
-  Layers,
-  Workflow,
-  CircleHelp,
-  ArrowUpRight,
-} from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { PAGES_DROPDOWN } from "../../../data/navigation.js";
+import "./PagesDropdown.css";
 
-const ICONS = {
-  "/technologies": Boxes,
-  "/materials": Layers,
-  "/process": Workflow,
-  "/process#faq": CircleHelp,
-};
-
-const EASE = [0.22, 1, 0.36, 1];
-
-export default function PagesDropdown({
-  open,
-  onClose,
-}) {
+export default function PagesDropdown({ open, onClose }) {
   const ref = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
-    if (!open) return;
+    const handleOutsideClick = (event) => {
+      if (!ref.current?.contains(event.target)) {
+        const pagesButton = event.target.closest(".navbar__pages");
 
-    const handlePointerDown = (event) => {
-      if (
-        ref.current &&
-        !ref.current.contains(event.target)
-      ) {
-        onClose();
+        if (!pagesButton) {
+          onClose();
+        }
       }
     };
 
-    const handleKeyDown = (event) => {
+    const handleEscape = (event) => {
       if (event.key === "Escape") {
         onClose();
       }
     };
 
-    document.addEventListener(
-      "pointerdown",
-      handlePointerDown
-    );
-
-    document.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.removeEventListener(
-        "pointerdown",
-        handlePointerDown
-      );
-
-      document.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
     };
-  }, [open, onClose]);
+  }, [onClose]);
+
+  useEffect(() => {
+    onClose();
+  }, [location.pathname]);
 
   return (
     <AnimatePresence>
@@ -77,92 +46,39 @@ export default function PagesDropdown({
           className="pagesmenu"
           initial={{
             opacity: 0,
-            y: 12,
-            x: "-50%",
-            scale: 0.97,
+            y: -6,
+            scale: 0.98,
           }}
           animate={{
             opacity: 1,
             y: 0,
-            x: "-50%",
             scale: 1,
           }}
           exit={{
             opacity: 0,
-            y: 8,
-            x: "-50%",
-            scale: 0.97,
+            y: -6,
+            scale: 0.98,
           }}
           transition={{
-            duration: 0.28,
-            ease: EASE,
+            duration: 0.18,
+            ease: [0.22, 1, 0.36, 1],
           }}
-          role="menu"
         >
-          <div className="pagesmenu__grid">
-            {PAGES_DROPDOWN.map((page, index) => {
-              const Icon =
-                ICONS[page.to] ?? Boxes;
-
-              return (
-                <motion.div
-                  key={`${page.to}-${index}`}
-                  initial={{
-                    opacity: 0,
-                    y: 8,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    delay:
-                      0.05 + index * 0.04,
-                    duration: 0.3,
-                    ease: EASE,
-                  }}
-                >
-                  <Link
-                    to={page.to}
-                    className="pagesmenu__item"
-                    onClick={onClose}
-                    role="menuitem"
-                  >
-                    <span className="pagesmenu__icon">
-                      <Icon
-                        size={18}
-                        strokeWidth={1.8}
-                      />
-                    </span>
-
-                    <span className="pagesmenu__body">
-                      <span className="pagesmenu__label">
-                        {page.label}
-
-                        <ArrowUpRight
-                          size={13}
-                          className="pagesmenu__arrow"
-                        />
-                      </span>
-
-                      <span className="pagesmenu__desc">
-                        {page.desc}
-                      </span>
-                    </span>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="pagesmenu__foot">
-            <Link
-              to="/contact"
-              onClick={onClose}
-            >
-              Start a project
-              <ArrowUpRight size={13} />
-            </Link>
+          <div className="pagesmenu__list">
+            {PAGES_DROPDOWN.map((page) => (
+              <NavLink
+                key={page.to}
+                to={page.to}
+                onClick={onClose}
+                className={({ isActive }) =>
+                  `pagesmenu__item ${
+                    isActive ? "pagesmenu__item--active" : ""
+                  }`
+                }
+              >
+                {page.label}
+              </NavLink>
+            ))}
           </div>
         </motion.div>
       )}

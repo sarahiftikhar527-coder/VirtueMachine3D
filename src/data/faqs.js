@@ -1,26 +1,62 @@
-export const FAQS = [
+export const faqs = [
   {
-    q: 'Which file formats do you accept?',
-    a: 'STL, STEP, OBJ and 3MF all work directly. If you have native CAD (SolidWorks, Fusion 360, Inventor), export STEP and our engineers will verify watertightness and wall thickness before quoting.',
+    id: 1,
+    question: "What is 3D printing?",
+    answer:
+      "3D printing is an additive manufacturing process that creates physical parts layer by layer from a digital 3D model. It is commonly used for prototypes, functional components, custom parts, and small-batch production.",
   },
   {
-    q: 'What tolerances can I expect?',
-    a: 'SLA and resin systems hold ±0.05mm on features under 100mm. FDM holds ±0.2mm, and our calibrated carbon-fiber nylon workflow holds ±0.1mm. Every part ships with a measurement report on request.',
+    id: 2,
+    question: "What types of 3D printing services do you offer?",
+    answer:
+      "We provide rapid prototyping, custom 3D printing, functional prototypes, engineering parts, product development support, and small-batch manufacturing.",
   },
   {
-    q: 'What is the typical turnaround?',
-    a: 'Standard parts ship in 24–72 hours including inspection. SLS nylon batches run 3–5 days. Same-day rush is available for files approved before 10:00 local time.',
+    id: 3,
+    question: "What materials can you print with?",
+    answer:
+      "Material availability depends on the project requirements. We can work with a range of materials suitable for prototypes, functional parts, engineering applications, and production requirements.",
   },
   {
-    q: 'Is there a minimum order value?',
-    a: 'No. We print single parts, and roughly a third of our orders are one-offs. Batch pricing kicks in automatically from 10 units with tiered discounts up to 10,000.',
+    id: 4,
+    question: "Can you help me choose the right material?",
+    answer:
+      "Yes. We can recommend a suitable material based on strength, flexibility, durability, temperature resistance, appearance, application, and budget.",
   },
   {
-    q: 'How do you protect my intellectual property?',
-    a: 'Every file is covered by a mutual NDA on request, stored on encrypted infrastructure, and deleted 90 days after delivery unless you ask us to keep it for repeat orders.',
+    id: 5,
+    question: "Do you provide rapid prototyping?",
+    answer:
+      "Yes. Rapid prototyping is one of our core services. We help turn digital concepts into physical prototypes so designs can be tested, reviewed, and improved before production.",
   },
   {
-    q: 'Do you offer finishing and assembly?',
-    a: 'Yes — bead blasting, vapor smoothing, dyeing, priming, painting and heat-set insert installation. Assembled sub-units arrive ready to bolt into your product.',
+    id: 6,
+    question: "Can you manufacture small batches?",
+    answer:
+      "Yes. Our small-batch manufacturing service is designed for businesses that need multiple consistent parts without committing to large production quantities.",
   },
-]
+  {
+    id: 7,
+    question: "Can you work from my existing CAD model?",
+    answer:
+      "Yes. You can provide your existing CAD model and we can review it for printing requirements, manufacturability, material selection, and potential improvements.",
+  },
+  {
+    id: 8,
+    question: "How long does a project usually take?",
+    answer:
+      "Project timelines depend on the part size, complexity, material, quantity, finishing requirements, and production method. We provide a project-specific timeline after reviewing your requirements.",
+  },
+  {
+    id: 9,
+    question: "Do you offer finishing and post-processing?",
+    answer:
+      "Yes. Depending on the material and application, post-processing and finishing options can be discussed as part of your project requirements.",
+  },
+  {
+    id: 10,
+    question: "How can I request a quote?",
+    answer:
+      "You can contact us through the Contact page and share your project details, including the part requirements, quantity, material preference, and deadline. Our team can then review your request.",
+  },
+];

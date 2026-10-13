@@ -1,0 +1,250 @@
+.cta {
+  position: relative;
+  width: 100%;
+  min-height: 540px;
+  overflow: hidden;
+  background: #b9f4dc;
+  font-family: "Inter", sans-serif;
+}
+
+.cta__background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cta__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(172, 243, 215, 0.1);
+  pointer-events: none;
+}
+
+.cta__container {
+  position: relative;
+  z-index: 2;
+  width: min(1100px, calc(100% - 48px));
+  min-height: 540px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 55px 0;
+}
+
+.cta__card {
+  width: min(580px, 100%);
+  min-height: 315px;
+  padding: 44px 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #071d35;
+  color: #ffffff;
+  box-shadow:
+    0 25px 65px rgba(4, 25, 43, 0.2),
+    0 8px 25px rgba(4, 25, 43, 0.12);
+}
+
+.cta__title {
+  width: 100%;
+  margin: 0;
+  font-size: clamp(31px, 3.6vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.cta__title span {
+  display: block;
+  white-space: nowrap;
+}
+
+.cta__text {
+  max-width: 400px;
+  margin: 18px 0 25px;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.cta__action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta__button {
+  position: relative;
+  width: 150px;
+  height: 46px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #16a05d;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(22, 160, 93, 0.18);
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.cta__button::before {
+  content: "";
+  position: absolute;
+  top: -70%;
+  left: -100%;
+  width: 45%;
+  height: 240%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.3) 60%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+  transform: skewX(-22deg);
+  animation: ctaButtonReflection 2.2s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cta__button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cta__button span,
+.cta__button svg {
+  position: relative;
+  z-index: 3;
+}
+
+.cta__button svg {
+  transition: transform 0.35s ease;
+}
+
+.cta__button:hover {
+  transform: translateY(-3px);
+  background: #20b96d;
+  box-shadow: 0 10px 25px rgba(22, 160, 93, 0.3);
+}
+
+.cta__button:hover svg {
+  transform: translate(3px, -3px);
+}
+
+@keyframes ctaButtonReflection {
+  0% {
+    left: -100%;
+  }
+
+  35% {
+    left: 135%;
+  }
+
+  100% {
+    left: 135%;
+  }
+}
+
+@media (max-width: 900px) {
+  .cta {
+    min-height: 500px;
+  }
+
+  .cta__container {
+    min-height: 500px;
+    width: min(100% - 36px, 720px);
+    padding: 45px 0;
+  }
+
+  .cta__card {
+    width: min(560px, 100%);
+    min-height: 305px;
+    padding: 42px 45px;
+  }
+
+  .cta__title {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cta {
+    min-height: 470px;
+  }
+
+  .cta__container {
+    width: min(100% - 28px, 540px);
+    min-height: 470px;
+    padding: 32px 0;
+  }
+
+  .cta__card {
+    width: 100%;
+    min-height: 300px;
+    padding: 38px 22px;
+  }
+
+  .cta__title {
+    font-size: 29px;
+    line-height: 1.07;
+    letter-spacing: -0.04em;
+  }
+
+  .cta__title span {
+    white-space: normal;
+  }
+
+  .cta__text {
+    max-width: 320px;
+    margin: 17px 0 23px;
+    font-size: 12.5px;
+  }
+
+  .cta__button {
+    width: 145px;
+    height: 45px;
+    font-size: 10.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta__button,
+  .cta__button::before,
+  .cta__button svg {
+    animation: none;
+    transition: none;
+  }
+}

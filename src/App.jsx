@@ -1,12 +1,14 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import MainLayout from './layouts/MainLayout.jsx'
-import Home from './pages/Home.jsx'
-import About from './pages/About.jsx'
-import Services from './pages/Services.jsx'
-import Technologies from './pages/Technologies.jsx'
-import Materials from './pages/Materials.jsx'
-import Process from './pages/Process.jsx'
-import Contact from './pages/Contact.jsx'
+import { Routes, Route, Navigate } from "react-router-dom";
+import MainLayout from "@/layouts/MainLayout.jsx";
+import Home from "@/pages/Home/Home.jsx";
+import About from "@/pages/About/About.jsx";
+import Services from "@/pages/Services/Services.jsx";
+import ServiceDetailPage from "@/features/services/ServiceDetail/ServiceDetailPage.jsx";
+import Pricing from "@/pages/Pricing/Pricing.jsx";
+import FAQ from "@/pages/FAQ/FAQ.jsx";
+import Blog from "@/pages/Blog/Blog.jsx";
+import BlogArticlePage from "@/pages/Blog/BlogArticlePage.jsx";
+import Contact from "@/pages/Contact/Contact.jsx";
 
 export default function App() {
   return (
@@ -15,12 +17,14 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/technologies" element={<Technologies />} />
-        <Route path="/materials" element={<Materials />} />
-        <Route path="/process" element={<Process />} />
+        <Route path="/services/:id" element={<ServiceDetailPage />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogArticlePage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
-  )
+  );
 }

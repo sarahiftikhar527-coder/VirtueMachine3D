@@ -99,18 +99,6 @@ const PAGES = [
     to: "/services",
   },
   {
-    label: "Technologies",
-    to: "/technologies",
-  },
-  {
-    label: "Materials",
-    to: "/materials",
-  },
-  {
-    label: "Process",
-    to: "/process",
-  },
-  {
     label: "Contact",
     to: "/contact",
   },

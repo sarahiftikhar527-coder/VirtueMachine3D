@@ -1,0 +1,147 @@
+.vm-service {
+  --ink: #0f1b26;
+  --paper: #eef1f4;
+  --steel: #4b5b6a;
+  --line: #d5dbe1;
+  --blue: #2f6bff;
+  --amber: #ffb020;
+  color: var(--ink);
+  background: #fff;
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+  line-height: 1.65;
+}
+
+.vm-service *,
+.vm-service *::before,
+.vm-service *::after {
+  box-sizing: border-box;
+}
+
+.vm-service .vm-display {
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+}
+
+.vm-service section {
+  position: relative;
+}
+
+.vm-service a {
+  text-decoration: none;
+}
+
+.vm-service .vm-detail-container {
+  width: min(100% - 40px, 1152px);
+  margin-inline: auto;
+}
+
+.vm-service .vm-detail-hero {
+  overflow: hidden;
+  background: var(--ink);
+  color: #fff;
+  padding: 110px 0 80px;
+}
+
+.vm-service .vm-detail-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.vm-service .vm-detail-artwork {
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.vm-service .vm-detail-overview {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.vm-service .vm-detail-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+}
+
+.vm-service .vm-detail-section-title {
+  margin: 0 0 24px;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.vm-service .vm-detail-copy {
+  color: var(--steel);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.vm-service .vm-detail-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 6px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.vm-service .vm-detail-button:hover {
+  background: #4a7fff;
+  transform: translateY(-2px);
+}
+
+.vm-service .vm-detail-button-outline {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+}
+
+.vm-service .vm-detail-button-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+  .vm-service .vm-detail-hero {
+    padding: 100px 0 56px;
+  }
+
+  .vm-service .vm-detail-hero-grid,
+  .vm-service .vm-detail-overview-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .vm-service .vm-detail-artwork {
+    max-width: 420px;
+  }
+
+  .vm-service .vm-detail-overview {
+    padding: 56px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .vm-service .vm-detail-container {
+    width: calc(100% - 32px);
+  }
+
+  .vm-service .vm-detail-hero {
+    padding-top: 88px;
+  }
+
+  .vm-service .vm-detail-section-title {
+    font-size: 30px;
+  }
+}

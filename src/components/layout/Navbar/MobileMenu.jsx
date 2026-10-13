@@ -8,7 +8,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import Logo from "../Logo/Logo.jsx";
-import Button from "../../common/Button.jsx";
+import Button from "../../../components/ui/Button.jsx";
 import {
   NAV_LINKS,
   PAGES_DROPDOWN,

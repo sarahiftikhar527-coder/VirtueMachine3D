@@ -197,18 +197,20 @@
   color: #fff;
 }
 
-@media (max-width: 480px) {
-  .fa-row--open .fa-pill {
-    min-width: 48px;
-    padding-right: 0;
+@media (max-width: 1100px) {
+  .fa-container {
+    display: none;
   }
+}
 
-  .fa-row--open .fa-pill__label {
-    max-width: 0;
-    opacity: 0;
-  }
-
+@media (prefers-reduced-motion: reduce) {
+  .fa-pill,
+  .fa-pill::before,
+  .fa-pill__icon,
+  .fa-pill__label,
+  .fa-detail,
+  .fa-detail::before,
   .fa-row--open .fa-detail {
-    max-width: 170px;
+    transition: none;
   }
 }

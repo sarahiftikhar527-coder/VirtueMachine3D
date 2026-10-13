@@ -12,7 +12,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import Logo from "../Logo/Logo.jsx";
-import Button from "../../common/Button.jsx";
+import Button from "../../../components/ui/Button.jsx";
 import {
   NAV_LINKS,
   PAGES_DROPDOWN,
@@ -49,8 +49,7 @@ export default function Navbar() {
 
   const [pagesOpen, setPagesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobilePagesOpen, setMobilePagesOpen] =
-    useState(false);
+  const [mobilePagesOpen, setMobilePagesOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -59,12 +58,11 @@ export default function Navbar() {
     setMobilePagesOpen(false);
     setSearchOpen(false);
     setSearchQuery("");
+    setMobileOpen(false);
   }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen
-      ? "hidden"
-      : "";
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -81,16 +79,10 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleOutsideClick
-    );
+    document.addEventListener("mousedown", handleOutsideClick);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleOutsideClick
-      );
+      document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
 
@@ -102,49 +94,31 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener(
-      "resize",
-      handleResize
-    );
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener(
-        "resize",
-        handleResize
-      );
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  const pagesIsActive = PAGES_DROPDOWN.some(
-    (item) => {
-      const base = item.to.split("#")[0];
+  const pagesIsActive = PAGES_DROPDOWN.some((item) => {
+    const base = item.to.split("#")[0];
 
-      return (
-        location.pathname === base &&
-        base !== "/"
-      );
-    }
-  );
+    return location.pathname === base && base !== "/";
+  });
 
   const searchResults = useMemo(() => {
-    const query = searchQuery
-      .trim()
-      .toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
 
     if (!query) {
       return [];
     }
 
     return SEARCH_ITEMS.filter((item) => {
-      const labelMatch = item.label
-        .toLowerCase()
-        .includes(query);
-
-      const routeMatch = item.to
-        .toLowerCase()
-        .includes(query);
-
-      return labelMatch || routeMatch;
+      return (
+        item.label.toLowerCase().includes(query) ||
+        item.to.toLowerCase().includes(query)
+      );
     }).slice(0, 6);
   }, [searchQuery]);
 
@@ -180,22 +154,16 @@ export default function Navbar() {
     <>
       <header
         className={`navbar on-dark ${
-          scrolled
-            ? "navbar--scrolled"
-            : ""
-        } ${
-          mobileOpen
-            ? "navbar--menu-open"
-            : ""
-        }`}
+          scrolled ? "navbar--scrolled" : ""
+        } ${mobileOpen ? "navbar--menu-open" : ""}`}
       >
-        <div className="container navbar__inner">
-          <Logo />
+        {/* "container" removed so the white logo plate touches the left edge */}
+        <div className="navbar__inner">
+          <div className="navbar__plate">
+            <Logo />
+          </div>
 
-          <nav
-            className="navbar__nav"
-            aria-label="Primary"
-          >
+          <nav className="navbar__nav" aria-label="Primary">
             <ul>
               {NAV_LINKS.map((link) => (
                 <li key={link.to}>
@@ -203,11 +171,7 @@ export default function Navbar() {
                     to={link.to}
                     end={link.to === "/"}
                     className={({ isActive }) =>
-                      `navbar__link ${
-                        isActive
-                          ? "is-active"
-                          : ""
-                      }`
+                      `navbar__link ${isActive ? "is-active" : ""}`
                     }
                   >
                     {link.label}
@@ -219,24 +183,13 @@ export default function Navbar() {
                 <button
                   type="button"
                   className={`navbar__link navbar__link--btn ${
-                    pagesIsActive
-                      ? "is-active"
-                      : ""
-                  } ${
-                    pagesOpen
-                      ? "is-open"
-                      : ""
-                  }`}
+                    pagesIsActive ? "is-active" : ""
+                  } ${pagesOpen ? "is-open" : ""}`}
                   aria-expanded={pagesOpen}
                   aria-haspopup="true"
-                  onClick={() =>
-                    setPagesOpen(
-                      (value) => !value
-                    )
-                  }
+                  onClick={() => setPagesOpen((value) => !value)}
                 >
                   Pages
-
                   <ChevronDown
                     size={14}
                     className="navbar__chevron"
@@ -245,9 +198,7 @@ export default function Navbar() {
 
                 <PagesDropdown
                   open={pagesOpen}
-                  onClose={() =>
-                    setPagesOpen(false)
-                  }
+                  onClose={() => setPagesOpen(false)}
                 />
               </li>
 
@@ -255,11 +206,7 @@ export default function Navbar() {
                 <NavLink
                   to="/contact"
                   className={({ isActive }) =>
-                    `navbar__link ${
-                      isActive
-                        ? "is-active"
-                        : ""
-                    }`
+                    `navbar__link ${isActive ? "is-active" : ""}`
                   }
                 >
                   Contact
@@ -272,9 +219,7 @@ export default function Navbar() {
             <div
               ref={searchRef}
               className={`navbar__search ${
-                searchOpen
-                  ? "is-open"
-                  : ""
+                searchOpen ? "is-open" : ""
               }`}
             >
               <button
@@ -282,28 +227,19 @@ export default function Navbar() {
                 className="navbar__search-button"
                 aria-label="Open search"
                 aria-expanded={searchOpen}
-                onClick={() =>
-                  setSearchOpen(true)
-                }
+                onClick={() => setSearchOpen(true)}
               >
-                <Search
-                  size={19}
-                  strokeWidth={2.1}
-                />
+                <Search size={19} strokeWidth={2.1} />
               </button>
 
               <div
                 className={`navbar__search-panel ${
-                  searchOpen
-                    ? "is-visible"
-                    : ""
+                  searchOpen ? "is-visible" : ""
                 }`}
               >
                 <form
                   className="navbar__search-form"
-                  onSubmit={
-                    handleSearchSubmit
-                  }
+                  onSubmit={handleSearchSubmit}
                 >
                   <Search
                     size={18}
@@ -315,9 +251,7 @@ export default function Navbar() {
                     type="text"
                     value={searchQuery}
                     onChange={(event) =>
-                      setSearchQuery(
-                        event.target.value
-                      )
+                      setSearchQuery(event.target.value)
                     }
                     placeholder="Search..."
                     aria-label="Search website"
@@ -339,44 +273,33 @@ export default function Navbar() {
 
                 {searchQuery.trim() && (
                   <div className="navbar__search-results">
-                    {searchResults.length >
-                    0 ? (
-                      searchResults.map(
-                        (item) => (
-                          <button
-                            key={`${item.to}-${item.label}`}
-                            type="button"
-                            className="navbar__search-result"
-                            onClick={() =>
-                              handleSearchResult(
-                                item.to
-                              )
-                            }
-                          >
-                            <span className="navbar__search-result-icon">
-                              <ArrowUpRight
-                                size={15}
-                              />
+                    {searchResults.length > 0 ? (
+                      searchResults.map((item) => (
+                        <button
+                          key={`${item.to}-${item.label}`}
+                          type="button"
+                          className="navbar__search-result"
+                          onClick={() => handleSearchResult(item.to)}
+                        >
+                          <span className="navbar__search-result-icon">
+                            <ArrowUpRight size={15} />
+                          </span>
+
+                          <span className="navbar__search-result-content">
+                            <span className="navbar__search-result-label">
+                              {item.label}
                             </span>
 
-                            <span className="navbar__search-result-content">
-                              <span className="navbar__search-result-label">
-                                {item.label}
-                              </span>
-
-                              <span className="navbar__search-result-type">
-                                {item.type}
-                              </span>
+                            <span className="navbar__search-result-type">
+                              {item.type}
                             </span>
-                          </button>
-                        )
-                      )
+                          </span>
+                        </button>
+                      ))
                     ) : (
                       <div className="navbar__search-empty">
                         <Search size={16} />
-                        <span>
-                          No results found
-                        </span>
+                        <span>No results found</span>
                       </div>
                     )}
                   </div>
@@ -395,24 +318,14 @@ export default function Navbar() {
             <button
               type="button"
               className="navbar__burger"
-              aria-label={
-                mobileOpen
-                  ? "Close menu"
-                  : "Open menu"
-              }
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-navigation"
               onClick={
-                mobileOpen
-                  ? handleMobileClose
-                  : handleMobileOpen
+                mobileOpen ? handleMobileClose : handleMobileOpen
               }
             >
-              {mobileOpen ? (
-                <X size={21} />
-              ) : (
-                <Menu size={21} />
-              )}
+              {mobileOpen ? <X size={21} /> : <Menu size={21} />}
             </button>
           </div>
         </div>
@@ -423,9 +336,7 @@ export default function Navbar() {
         onClose={handleMobileClose}
         pagesOpen={mobilePagesOpen}
         onTogglePages={() =>
-          setMobilePagesOpen(
-            (value) => !value
-          )
+          setMobilePagesOpen((value) => !value)
         }
       />
     </>
