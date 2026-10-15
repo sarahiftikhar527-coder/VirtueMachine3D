@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { useLocation } from "react-router-dom";
-import heroVideo from "../../../assets/videos/Home/Hero/hero-bg.mp4";
+import heroVideo from "../../../assets/videos/Home/Hero/hero-bg.webm";
 
 const HeroVideoContext = createContext(null);
 
