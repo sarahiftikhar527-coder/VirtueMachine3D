@@ -1,6 +1,6 @@
 
 import { accountText } from "../../../data/terms";
-import "./TermsAccount.css";
+import "./termsAccount.css";
 
 function TermsAccount() {
   return (

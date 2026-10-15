@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PricingHero from "../../features/pricing/PricingHero/PricingHero";
 import PricingPlans from "../../features/pricing/PricingPlans/PricingPlans";
-import "./pricing.css";
+import "./Pricing.css";
 
 
 /*

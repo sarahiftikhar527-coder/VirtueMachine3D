@@ -1,6 +1,6 @@
 
 import React from "react";
-import privacyPolicy from "../../../data/PrivacyPolicy";
+import privacyPolicy from "../../../data/privacyPolicy";
 import "./Description.css";
 
 const Description = () => {

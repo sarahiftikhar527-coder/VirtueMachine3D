@@ -1,4 +1,4 @@
-import "./TermsArticle.css";
+import "./termsArticle.css";
 import { terms } from "../../../data/terms";
 
 function TermsArticle() {

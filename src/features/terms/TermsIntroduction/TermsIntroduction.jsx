@@ -1,6 +1,6 @@
 
 import { termsIntroduction } from "../../../data/terms";
-import "./TermsIntroduction.css";
+import "./termsIntroduction.css";
 
 function TermsIntroduction() {
   return (

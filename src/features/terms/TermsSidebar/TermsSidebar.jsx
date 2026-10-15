@@ -3,7 +3,7 @@ import {
   termsSidebarData,
 } from "../../../data/terms";
 
-import "./TermsSidebar.css";
+import "./termsSidebar.css";
 
 function TermsSidebar() {
   return (
