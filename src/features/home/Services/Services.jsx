@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom"
 import { ArrowUpRight } from "lucide-react"
 import Reveal from "../../../components/ui/Reveal.jsx";
@@ -41,7 +42,7 @@ export default function Services() {
               className="services__cell"
             >
               <Link
-                to="/services"
+                to={`/services/${service.id}`}
                 className="srv-card"
               >
                 <div className="srv-card__inner">

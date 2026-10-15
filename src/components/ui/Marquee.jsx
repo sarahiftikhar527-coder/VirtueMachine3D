@@ -14,8 +14,14 @@ export default function Marquee({ items, className }) {
             className="marquee__item"
             key={`${item}-${index}`}
           >
-            <span>{item}</span>
-            <span className="marquee__plus">+</span>
+            <span className="marquee__text">
+              {item}
+            </span>
+
+            <span
+              className="marquee__circle"
+              aria-hidden="true"
+            />
           </span>
         ))}
       </div>

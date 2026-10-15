@@ -1,0 +1,207 @@
+
+/* =====================================
+   PRIVACY DESCRIPTION — WHITE THEME
+===================================== */
+
+.privacy-description {
+  position: relative;
+  padding: 20px 22px 80px;
+  background: #ffffff;
+  color: #171a17;
+}
+
+.privacy-description__container {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.privacy-description__card {
+  padding: 38px 42px;
+  background: #ffffff;
+  border: 1px solid #e8ece8;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(15, 30, 15, 0.07);
+}
+
+/* Last updated */
+
+.privacy-description__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 23px;
+  color: #747b74;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.privacy-description__meta-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #29c94f;
+  box-shadow: 0 0 8px rgba(41, 201, 79, 0.25);
+}
+
+.privacy-description__meta time {
+  color: #249b40;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Intro */
+
+.privacy-description__intro {
+  margin: 0;
+  color: #454b45;
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+/* Divider */
+
+.privacy-description__divider {
+  width: 100%;
+  height: 1px;
+  margin: 28px 0;
+  background: #e9ece9;
+}
+
+/* Section headings */
+
+.privacy-description__item h2 {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 0 15px;
+  color: #171b17;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* Green section numbers */
+
+.privacy-description__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 35px;
+  height: 31px;
+  padding: 0 5px;
+  border: 1px solid #d2f1d9;
+  border-radius: 6px;
+  background: #f0fbf2;
+  color: #20983c;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+/* Section description */
+
+.privacy-description__text {
+  margin: 0;
+  color: #626962;
+  font-size: 13px;
+  line-height: 1.95;
+}
+
+/* Data list */
+
+.privacy-description__list {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.privacy-description__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.privacy-description__bullet {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: #31cf53;
+}
+
+.privacy-description__list li p {
+  margin: 0;
+  color: #626962;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.privacy-description__list strong {
+  color: #262c26;
+  font-weight: 700;
+}
+
+/* Footer text */
+
+.privacy-description__footer {
+  margin: 23px 0 0;
+  color: #858b85;
+  font-size: 12px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 600px) {
+  .privacy-description {
+    padding: 15px 14px 55px;
+  }
+
+  .privacy-description__card {
+    padding: 26px 20px;
+    border-radius: 11px;
+  }
+
+  .privacy-description__meta {
+    gap: 7px;
+    font-size: 10px;
+  }
+
+  .privacy-description__intro {
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .privacy-description__item h2 {
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .privacy-description__number {
+    min-width: 30px;
+    height: 28px;
+  }
+
+  .privacy-description__text,
+  .privacy-description__list li p {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+
+  .privacy-description__divider {
+    margin: 23px 0;
+  }
+
+  .privacy-description__footer {
+    font-size: 11px;
+  }
+}

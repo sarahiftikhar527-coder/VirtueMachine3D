@@ -1,0 +1,227 @@
+/* =========================================
+   FAQ HERO — DESKTOP DESIGN PRESERVED
+   Responsive styling
+   Popular Topics removed
+   ========================================= */
+
+.faqhero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background-color: var(--faq-deep);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Original desktop spacing preserved */
+  padding:
+    clamp(88px, 11vw, 132px)
+    clamp(16px, 5vw, 56px)
+    clamp(48px, 7vw, 80px);
+}
+
+/* ---------- Background Overlay ---------- */
+
+.faqhero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 32, 19, 0.92) 0%,
+    rgba(7, 32, 19, 0.78) 50%,
+    rgba(7, 32, 19, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---------- Hero Content ---------- */
+
+.faqhero__inner {
+  position: relative;
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.faqhero__title {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.faqhero__text {
+  margin: 14px 0 0;
+  max-width: 46ch;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.6;
+  color: #cfe8d9;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Search Bar ---------- */
+
+.faqhero__search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+  height: 36px;
+  margin: 35px 0 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  background: #fff;
+  color: var(--faq-muted);
+  border-radius: 14px;
+  transition: box-shadow 0.2s;
+}
+
+.faqhero__search:focus-within {
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.5);
+}
+
+.faqhero__search > svg {
+  flex: 0 0 auto;
+}
+
+.faqhero__search input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--faq-ink);
+}
+
+.faqhero__search input::placeholder {
+  color: #7f9587;
+  opacity: 1;
+}
+
+/* =========================================
+   TABLET — 641px to 1024px
+   ========================================= */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .faqhero {
+    padding:
+      clamp(82px, 10vw, 110px)
+      clamp(28px, 5vw, 44px)
+      clamp(48px, 6vw, 68px);
+  }
+
+  .faqhero__title {
+    max-width: 19ch;
+    font-size: clamp(2rem, 4.4vw, 2.75rem);
+  }
+
+  .faqhero__text {
+    max-width: 44ch;
+  }
+
+  .faqhero__search {
+    max-width: 460px;
+    height: 48px;
+    margin-top: 28px;
+  }
+}
+
+/* =========================================
+   MOBILE — up to 640px
+   ========================================= */
+
+@media (max-width: 640px) {
+  .faqhero {
+    padding: 76px 22px 44px;
+    background-position: center;
+  }
+
+  /* Keep text readable over the hero image */
+  .faqhero__overlay {
+    background: rgba(7, 32, 19, 0.82);
+  }
+
+  .faqhero__inner {
+    max-width: 100%;
+  }
+
+  .faqhero__title {
+    max-width: 17ch;
+    font-size: clamp(1.85rem, 6.5vw, 2.4rem);
+    line-height: 1.13;
+    letter-spacing: -0.025em;
+  }
+
+  .faqhero__text {
+    max-width: 43ch;
+    margin-top: 12px;
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .faqhero__search {
+    max-width: 100%;
+    height: 52px;
+    margin-top: 25px;
+    padding: 0 15px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+
+  .faqhero__search > svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .faqhero__search input {
+    font-size: 0.95rem;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE — up to 400px
+   ========================================= */
+
+@media (max-width: 400px) {
+  .faqhero {
+    padding: 66px 16px 38px;
+  }
+
+  .faqhero__title {
+    max-width: 100%;
+    font-size: clamp(1.7rem, 7.2vw, 2rem);
+    line-height: 1.16;
+  }
+
+  .faqhero__text {
+    margin-top: 10px;
+    font-size: 0.91rem;
+    line-height: 1.6;
+  }
+
+  .faqhero__search {
+    height: 48px;
+    margin-top: 22px;
+    padding: 0 12px;
+    gap: 9px;
+  }
+
+  .faqhero__search input {
+    font-size: 0.9rem;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .faqhero__search {
+    transition: none;
+  }
+}

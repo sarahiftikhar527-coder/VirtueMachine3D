@@ -1,0 +1,22 @@
+
+.privacy-policy-page {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background: #050705;
+  color: #fff;
+  font-family: inherit;
+}
+
+.privacy-policy-page *,
+.privacy-policy-page *::before,
+.privacy-policy-page *::after {
+  box-sizing: border-box;
+}
+
+.privacy-policy-page h1,
+.privacy-policy-page h2,
+.privacy-policy-page p {
+  overflow-wrap: anywhere;
+}

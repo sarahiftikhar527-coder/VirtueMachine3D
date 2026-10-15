@@ -1,0 +1,180 @@
+
+/* =========================================
+   TERMS SIDEBAR — DESKTOP
+   ========================================= */
+
+.terms-sidebar {
+  width: 100%;
+  padding: 22px 16px;
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    145deg,
+    #f0fdf4 0%,
+    #f7fef9 48%,
+    #ffffff 100%
+  );
+
+  border: 1px solid #dcfce7;
+  border-radius: 12px;
+
+  /* Sticky Sidebar */
+  position: sticky;
+  top: 25px;
+  align-self: start;
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c8ebd2 transparent;
+}
+
+/* =========================================
+   SIDEBAR SCROLLBAR
+   ========================================= */
+
+.terms-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terms-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terms-sidebar::-webkit-scrollbar-thumb {
+  background: #c8ebd2;
+  border-radius: 10px;
+}
+
+/* =========================================
+   SIDEBAR HEADING
+   ========================================= */
+
+.terms-sidebar__header {
+  padding: 0 7px 17px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #d9f0df;
+}
+
+.terms-sidebar__header h2 {
+  margin: 0 0 6px;
+  color: #234b32;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+}
+
+.terms-sidebar__header p {
+  margin: 0;
+  color: #6b8171;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* =========================================
+   NAVIGATION LIST
+   ========================================= */
+
+.terms-sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+/* =========================================
+   NAVIGATION LINK
+   ========================================= */
+
+.terms-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 9px 10px;
+
+  color: #45594b;
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* =========================================
+   SECTION NUMBER
+   ========================================= */
+
+.terms-sidebar__number {
+  flex-shrink: 0;
+  min-width: 17px;
+
+  color: #779481;
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================
+   SECTION TITLE
+   ========================================= */
+
+.terms-sidebar__title {
+  min-width: 0;
+}
+
+/* =========================================
+   HOVER EFFECT
+   ========================================= */
+
+.terms-sidebar__link:hover {
+  color: #245b37;
+  background-color: rgba(220, 252, 231, 0.75);
+  border-color: #c8ebd2;
+}
+
+.terms-sidebar__link:hover .terms-sidebar__number {
+  color: #287443;
+}
+
+/* =========================================
+   KEYBOARD ACCESSIBILITY
+   ========================================= */
+
+.terms-sidebar__link:focus-visible {
+  outline: 2px solid #4d9663;
+  outline-offset: 2px;
+}
+
+/* =========================================
+   SMOOTH SCROLLING
+   ========================================= */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 25px;
+}
+
+/* =========================================
+   TABLET & MOBILE
+   Hide sidebar completely
+   ========================================= */
+
+@media (max-width: 768px) {
+  .terms-sidebar {
+    display: none;
+  }
+}

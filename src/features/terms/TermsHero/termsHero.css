@@ -1,0 +1,225 @@
+/* =================================
+   FULL WIDTH HERO SECTION
+================================= */
+
+.terms-hero {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 440px;
+  padding: 100px 24px;
+
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  border-radius: 0;
+  text-align: center;
+  background-color: #101410;
+}
+
+/* =================================
+   BACKGROUND IMAGE
+   Natural image colors + subtle blur
+================================= */
+
+.terms-hero-bg {
+  position: absolute;
+  inset: -5px;
+  z-index: -2;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: blur(3px);
+  transform: scale(1.02);
+}
+
+/* =================================
+   NEUTRAL DARK OVERLAY
+   No green tint
+================================= */
+
+.terms-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.32) 50%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* =================================
+   HERO TEXT
+================================= */
+
+.terms-hero-copy {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  color: #ffffff;
+
+  animation: termsTextReveal
+    1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* =================================
+   MAIN HEADING
+================================= */
+
+.terms-hero-copy h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  margin: 0;
+
+  color: #ffffff;
+  font-size: clamp(40px, 5.5vw, 60px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -2px;
+}
+
+/* Highlighted Word */
+
+.terms-title-highlight {
+  color: #c9f3d2;
+}
+
+/* =================================
+   ACCENT LINE
+================================= */
+
+.terms-title-line {
+  width: 64px;
+  height: 3px;
+
+  margin-top: 24px;
+
+  background: #a7e8b5;
+  border-radius: 5px;
+
+  transform-origin: center;
+
+  animation: termsLineReveal
+    0.8s ease-out 0.45s both;
+}
+
+/* =================================
+   TEXT ANIMATION
+================================= */
+
+@keyframes termsTextReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =================================
+   LINE ANIMATION
+================================= */
+
+@keyframes termsLineReveal {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 768px) {
+  .terms-hero {
+    min-height: 420px;
+    padding: 80px 24px;
+  }
+
+  .terms-hero-bg {
+    background-position: center;
+  }
+
+  .terms-hero-copy h1 {
+    font-size: clamp(36px, 7vw, 50px);
+    letter-spacing: -1.5px;
+  }
+
+  .terms-title-line {
+    margin-top: 21px;
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 480px) {
+  .terms-hero {
+    min-height: 360px;
+    padding: 65px 18px;
+  }
+
+  .terms-hero-bg {
+    filter: blur(2px);
+    background-position: center;
+  }
+
+  .terms-hero-overlay {
+    background: rgba(0, 0, 0, 0.42);
+  }
+
+  .terms-hero-copy h1 {
+    font-size: clamp(34px, 9vw, 40px);
+    letter-spacing: -1px;
+  }
+
+  .terms-title-line {
+    width: 54px;
+    margin-top: 19px;
+  }
+}
+
+/* =================================
+   REDUCED MOTION ACCESSIBILITY
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .terms-hero-copy,
+  .terms-title-line {
+    animation: none;
+  }
+}

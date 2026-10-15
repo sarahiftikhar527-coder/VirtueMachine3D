@@ -74,6 +74,7 @@ export default function About() {
         </motion.div>
 
         <div className="about__rows">
+          {/* FIRST ROW: TEXT FIRST, THEN VIDEO */}
           <div className="about__row">
             <motion.div
               className="about__text"
@@ -109,9 +110,10 @@ export default function About() {
             </motion.div>
           </div>
 
-          <div className="about__row">
+          {/* SECOND ROW: DESKTOP VIDEO FIRST, MOBILE TEXT FIRST */}
+          <div className="about__row about__row--second">
             <motion.div
-              className="about__video"
+              className="about__video about__video--second"
               variants={revealVideo}
               initial="hidden"
               whileInView="show"
@@ -128,7 +130,7 @@ export default function About() {
             </motion.div>
 
             <motion.div
-              className="about__text"
+              className="about__text about__text--second"
               variants={revealFromRight}
               initial="hidden"
               whileInView="show"

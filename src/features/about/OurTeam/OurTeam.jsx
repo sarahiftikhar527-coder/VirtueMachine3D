@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import "./OurTeam.css";
 
 import teamOne from "../../../assets/images/About/Team/team-1.webp";
@@ -7,8 +8,13 @@ import teamThree from "../../../assets/images/About/Team/team-3.webp";
 import teamFour from "../../../assets/images/About/Team/team-4.webp";
 import teamFive from "../../../assets/images/About/Team/team-5.webp";
 
+const EASE = [0.22, 1, 0.36, 1];
+const MOBILE_QUERY = "(max-width: 900px)";
+
+// NOTE: placeholder naam hain, apne asli naam likh dein
 const teamMembers = [
   {
+    name: "Team Member One",
     role: "Lead Engineer",
     image: teamOne,
     facebook: "https://www.facebook.com/",
@@ -16,6 +22,7 @@ const teamMembers = [
     whatsapp: "https://wa.me/15555550142",
   },
   {
+    name: "Team Member Two",
     role: "Design Specialist",
     image: teamTwo,
     facebook: "https://www.facebook.com/",
@@ -23,6 +30,7 @@ const teamMembers = [
     whatsapp: "https://wa.me/15555550142",
   },
   {
+    name: "Team Member Three",
     role: "3D Printing Expert",
     image: teamThree,
     facebook: "https://www.facebook.com/",
@@ -30,6 +38,7 @@ const teamMembers = [
     whatsapp: "https://wa.me/15555550142",
   },
   {
+    name: "Team Member Four",
     role: "Production Specialist",
     image: teamFour,
     facebook: "https://www.facebook.com/",
@@ -37,6 +46,7 @@ const teamMembers = [
     whatsapp: "https://wa.me/15555550142",
   },
   {
+    name: "Team Member Five",
     role: "Quality Expert",
     image: teamFive,
     facebook: "https://www.facebook.com/",
@@ -45,21 +55,25 @@ const teamMembers = [
   },
 ];
 
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 50,
-  },
-  visible: (index) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      delay: index * 0.1,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia(MOBILE_QUERY).matches
+      : false
+  );
+
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const onChange = (e) => setIsMobile(e.matches);
+
+    setIsMobile(mql.matches);
+    mql.addEventListener("change", onChange);
+
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return isMobile;
+}
 
 function FacebookIcon() {
   return (
@@ -118,15 +132,38 @@ function SocialButtons({ member }) {
   );
 }
 
-function TeamCard({ member, index }) {
+function TeamCard({ member, index, reduce, isMobile }) {
   const isPriority = index === 0;
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: reduce ? 0 : isMobile ? 36 : 50,
+    },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduce ? 0.4 : 0.8,
+        // mobile pe 2 cards ek row mein hain, is liye chhota delay
+        delay: reduce ? 0 : isMobile ? (i % 2) * 0.08 : Math.min(i, 3) * 0.1,
+        ease: EASE,
+      },
+    }),
+  };
+
+  const classes = [
+    "our-team__card",
+    index === 0 ? "our-team__card--first" : "",
+    index === 4 ? "our-team__card--last" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <motion.article
-      className={`our-team__card ${
-        index === 0 ? "our-team__card--first" : ""
-      }`}
-      variants={cardVariants}
+      className={classes}
+      variants={variants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
@@ -154,50 +191,105 @@ function TeamCard({ member, index }) {
 }
 
 export default function OurTeam() {
+  const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+
+  const introContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduce ? 0 : 0.11,
+        delayChildren: reduce ? 0 : 0.05,
+      },
+    },
+  };
+
+  const introItem = {
+    hidden: {
+      opacity: 0,
+      x: reduce || isMobile ? 0 : -50,
+      y: reduce ? 0 : isMobile ? 26 : 0,
+      filter: reduce ? "blur(0px)" : isMobile ? "blur(4px)" : "blur(6px)",
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: reduce ? 0.4 : 0.85, ease: EASE },
+    },
+  };
+
   return (
     <section className="our-team">
       <div className="our-team__container">
         <div className="our-team__column our-team__column--first">
           <motion.div
             className="our-team__intro"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={introContainer}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.9,
-              ease: [0.22, 1, 0.36, 1],
-            }}
           >
-            <div className="our-team__label">
+            <motion.div className="our-team__label" variants={introItem}>
               <span />
               Our Team
-            </div>
+            </motion.div>
 
-            <h2>Team of Expert</h2>
+            <motion.h2 variants={introItem}>Team of Expert</motion.h2>
 
-          <p>
-            Our team combines engineering expertise, creative thinking, and advanced
-            3D printing knowledge to turn ideas into precise, reliable, and
-            production-ready solutions.
-            </p>
+            <motion.p variants={introItem}>
+              Our team combines engineering expertise, creative thinking, and
+              advanced 3D printing knowledge to turn ideas into precise,
+              reliable, and production-ready solutions.
+            </motion.p>
 
-            <a href="/contact" className="our-team__button">
+            <motion.a
+              href="/contact"
+              className="our-team__button"
+              variants={introItem}
+            >
               <span>Contact Us</span>
               <span className="our-team__button-arrow">↗</span>
-            </a>
+            </motion.a>
           </motion.div>
 
-          <TeamCard member={teamMembers[0]} index={0} />
+          <TeamCard
+            member={teamMembers[0]}
+            index={0}
+            reduce={reduce}
+            isMobile={isMobile}
+          />
         </div>
 
         <div className="our-team__column">
-          <TeamCard member={teamMembers[1]} index={1} />
-          <TeamCard member={teamMembers[2]} index={2} />
+          <TeamCard
+            member={teamMembers[1]}
+            index={1}
+            reduce={reduce}
+            isMobile={isMobile}
+          />
+          <TeamCard
+            member={teamMembers[2]}
+            index={2}
+            reduce={reduce}
+            isMobile={isMobile}
+          />
         </div>
 
         <div className="our-team__column">
-          <TeamCard member={teamMembers[3]} index={3} />
-          <TeamCard member={teamMembers[4]} index={4} />
+          <TeamCard
+            member={teamMembers[3]}
+            index={3}
+            reduce={reduce}
+            isMobile={isMobile}
+          />
+          <TeamCard
+            member={teamMembers[4]}
+            index={4}
+            reduce={reduce}
+            isMobile={isMobile}
+          />
         </div>
       </div>
     </section>

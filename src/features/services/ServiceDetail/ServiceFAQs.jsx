@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Plus } from "lucide-react";
@@ -16,7 +15,8 @@ const styles = `
 .service-faq {
   position: relative;
   overflow: hidden;
-  padding: 100px 0 38px;
+  margin-top: -32px; /* FAQ SECTION POSITION: Poore section ko upar move kiya gaya hai */
+  padding: 68px 0 38px;
   background: #fff;
   color: #18221b;
   font-family: 'Poppins', sans-serif;
@@ -26,13 +26,6 @@ const styles = `
 .service-faq__container {
   width: min(1320px, calc(100% - 64px));
   margin: 0 auto;
-}
-
-.service-faq__top-line {
-  height: 1px;
-  margin-bottom: 72px;
-  background: #e1e7e1;
-  transform-origin: left;
 }
 
 .service-faq__layout {
@@ -250,7 +243,8 @@ const styles = `
 
 @media (max-width: 1024px) {
   .service-faq {
-    padding-top: 80px;
+    margin-top: -26px;
+    padding-top: 60px;
   }
 
   .service-faq__layout {
@@ -270,15 +264,12 @@ const styles = `
 
 @media (max-width: 767px) {
   .service-faq {
-    padding: 60px 0 28px;
+    margin-top: -20px;
+    padding: 46px 0 28px;
   }
 
   .service-faq__container {
     width: calc(100% - 40px);
-  }
-
-  .service-faq__top-line {
-    margin-bottom: 42px;
   }
 
   .service-faq__layout {
@@ -390,14 +381,6 @@ export default function ServiceFAQs({ service }) {
 
       <section className="service-faq">
         <div className="service-faq__container">
-          <motion.div
-            initial={reduceMotion ? false : { scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease }}
-            className="service-faq__top-line"
-          />
-
           <div className="service-faq__layout">
             <motion.div
               initial={reduceMotion ? false : "hidden"}
@@ -472,7 +455,9 @@ export default function ServiceFAQs({ service }) {
                         </span>
 
                         <motion.span
-                          animate={reduceMotion ? {} : { rotate: isOpen ? 45 : 0 }}
+                          animate={
+                            reduceMotion ? {} : { rotate: isOpen ? 45 : 0 }
+                          }
                           transition={{ duration: 0.25, ease }}
                           className="service-faq__toggle"
                         >
@@ -487,7 +472,9 @@ export default function ServiceFAQs({ service }) {
                           id={panelId}
                           role="region"
                           aria-labelledby={buttonId}
-                          initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                          initial={
+                            reduceMotion ? false : { height: 0, opacity: 0 }
+                          }
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease }}
@@ -502,7 +489,6 @@ export default function ServiceFAQs({ service }) {
               })}
             </div>
           </div>
-          
         </div>
       </section>
     </>

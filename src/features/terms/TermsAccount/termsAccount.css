@@ -1,0 +1,40 @@
+.terms-account { margin-top: 31px; scroll-margin-top: 25px; }
+.terms-account-heading { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.terms-section-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #087d55;
+  background: #e7faf1;
+  font-size: 20px;
+  font-weight: 800;
+}
+.terms-account-heading h2 { margin: 0; color: #10213a; font-size: 22px; white-space: nowrap; }
+.terms-heading-line { height: 1px; flex: 1; background: #00b86b; }
+.terms-account-body { padding-left: 58px; }
+.terms-account-body p { margin: 0 0 14px; color: #2d4663; font-size: 13px; line-height: 1.8; }
+.terms-rule-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 11px; margin-top: 17px; }
+.terms-rule-card {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 14px 11px;
+  color: #00975d;
+  border: 1px solid #e0f1e9;
+  border-radius: 10px;
+  background: #fbfffd;
+}
+.terms-rule-card span { color: #18304a; font-size: 10px; line-height: 1.55; }
+@media (max-width: 950px) { .terms-rule-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .terms-account-heading { gap: 10px; }
+  .terms-account-heading h2 { font-size: 19px; }
+  .terms-account-body { padding-left: 0; }
+  .terms-rule-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.terms-rule-icon{display:inline-flex;align-items:center;justify-content:center;min-width:24px;font-size:23px;font-weight:700;color:var(--terms-green,#72b52a)}

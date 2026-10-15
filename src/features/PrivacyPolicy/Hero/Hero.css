@@ -1,0 +1,206 @@
+/* =========================================
+   PRIVACY POLICY HERO
+   ========================================= */
+
+.privacy-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 380px;
+  padding: 120px 24px 100px;
+
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #050705;
+}
+
+/* =========================================
+   BACKGROUND IMAGE WITH SUBTLE BLUR
+   ========================================= */
+
+.privacy-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: -6px;
+
+  background-image: var(--privacy-hero-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  filter: blur(3px);
+  transform: scale(1.02);
+}
+
+/* =========================================
+   DARK OVERLAY
+   ========================================= */
+
+.privacy-hero__overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.58) 55%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================
+   HERO CONTENT
+   ========================================= */
+
+.privacy-hero__content {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+/* =========================================
+   EYEBROW TEXT
+   ========================================= */
+
+.privacy-hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 15px;
+
+  color: #43e866;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+/* =========================================
+   MAIN HEADING
+   ========================================= */
+
+.privacy-hero h1 {
+  margin: 0;
+
+  color: #ffffff;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.privacy-hero h1 span {
+  color: #43e866;
+}
+
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
+.privacy-hero__content p {
+  max-width: 500px;
+  margin: 18px auto 0;
+
+  color: #d2d5d2;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* =========================================
+   GREEN DECORATIVE LINE
+   ========================================= */
+
+.privacy-hero__line {
+  width: 44px;
+  height: 3px;
+  margin: 24px auto 0;
+
+  border-radius: 10px;
+  background: #43e866;
+}
+
+/* =========================================
+   TABLET RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+  .privacy-hero {
+    min-height: 440px;
+    padding: 100px 24px 85px;
+  }
+
+  .privacy-hero h1 {
+    font-size: clamp(36px, 6vw, 52px);
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .privacy-hero {
+    min-height: 380px;
+    padding: 70px 18px 80px;
+  }
+
+  .privacy-hero::before {
+    background-position: center;
+    filter: blur(2px);
+  }
+
+  .privacy-hero__content {
+    max-width: 100%;
+  }
+
+  .privacy-hero h1 {
+    font-size: clamp(34px, 9vw, 44px);
+    letter-spacing: -0.8px;
+  }
+
+  .privacy-hero__eyebrow {
+    margin-bottom: 12px;
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .privacy-hero__content p {
+    max-width: 350px;
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .privacy-hero__line {
+    margin-top: 21px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 380px) {
+  .privacy-hero {
+    min-height: 350px;
+    padding: 60px 15px 70px;
+  }
+
+  .privacy-hero h1 {
+    font-size: 32px;
+  }
+
+  .privacy-hero__content p {
+    font-size: 12px;
+  }
+}

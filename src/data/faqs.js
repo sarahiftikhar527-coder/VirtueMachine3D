@@ -1,62 +1,96 @@
-export const faqs = [
+export const FAQ_CATEGORIES = [
+  "All",
+  "3D Printing",
+  "CNC Procurement",
+  "Materials",
+  "Quality",
+  "Pricing & Delivery",
+];
+
+export const FAQS = [
   {
-    id: 1,
-    question: "What is 3D printing?",
-    answer:
-      "3D printing is an additive manufacturing process that creates physical parts layer by layer from a digital 3D model. It is commonly used for prototypes, functional components, custom parts, and small-batch production.",
+    category: "3D Printing",
+    q: "What 3D printing services does Virtue Mechanics offer?",
+    a: "We provide 3D printing solutions for rapid prototyping, functional parts, product development, and custom manufacturing. We help you select a suitable process based on your design, application, material requirements, and production goals.",
   },
   {
-    id: 2,
-    question: "What types of 3D printing services do you offer?",
-    answer:
-      "We provide rapid prototyping, custom 3D printing, functional prototypes, engineering parts, product development support, and small-batch manufacturing.",
+    category: "3D Printing",
+    q: "Can you turn my CAD design into a physical part?",
+    a: "Yes. Share your 3D model or technical drawings with us, and our team will review your requirements, recommend a suitable manufacturing approach, and provide a quote before production begins.",
   },
   {
-    id: 3,
-    question: "What materials can you print with?",
-    answer:
-      "Material availability depends on the project requirements. We can work with a range of materials suitable for prototypes, functional parts, engineering applications, and production requirements.",
+    category: "3D Printing",
+    q: "Which 3D printing materials are available?",
+    a: "Material availability depends on the printing technology and intended application. We can help you explore suitable options based on strength, flexibility, temperature resistance, surface finish, and budget.",
   },
   {
-    id: 4,
-    question: "Can you help me choose the right material?",
-    answer:
-      "Yes. We can recommend a suitable material based on strength, flexibility, durability, temperature resistance, appearance, application, and budget.",
+    category: "3D Printing",
+    q: "Can you produce both prototypes and production parts?",
+    a: "Yes. We support early-stage prototypes, design validation, functional components, and small production runs. We will review your quantity and requirements to recommend an appropriate solution.",
   },
   {
-    id: 5,
-    question: "Do you provide rapid prototyping?",
-    answer:
-      "Yes. Rapid prototyping is one of our core services. We help turn digital concepts into physical prototypes so designs can be tested, reviewed, and improved before production.",
+    category: "CNC Procurement",
+    q: "Do you manufacture CNC precision parts?",
+    a: "Virtue Mechanics works with specialized CNC manufacturing partners to help source precision-machined components. We coordinate your requirements, communicate specifications, and help manage the process from quotation through delivery.",
   },
   {
-    id: 6,
-    question: "Can you manufacture small batches?",
-    answer:
-      "Yes. Our small-batch manufacturing service is designed for businesses that need multiple consistent parts without committing to large production quantities.",
+    category: "CNC Procurement",
+    q: "What is CNC parts procurement?",
+    a: "CNC parts procurement is the process of sourcing custom-machined components through qualified manufacturing partners. Virtue Mechanics provides a single point of contact to help coordinate specifications, quotations, production requirements, and delivery.",
   },
   {
-    id: 7,
-    question: "Can you work from my existing CAD model?",
-    answer:
-      "Yes. You can provide your existing CAD model and we can review it for printing requirements, manufacturability, material selection, and potential improvements.",
+    category: "CNC Procurement",
+    q: "What information do you need to source CNC parts?",
+    a: "Ideally, provide a 2D engineering drawing, a 3D CAD file, material specifications, required tolerances, surface-finish requirements, and order quantity. If some details are unavailable, contact us and we can discuss your project.",
   },
   {
-    id: 8,
-    question: "How long does a project usually take?",
-    answer:
-      "Project timelines depend on the part size, complexity, material, quantity, finishing requirements, and production method. We provide a project-specific timeline after reviewing your requirements.",
+    category: "CNC Procurement",
+    q: "Can you source custom metal and plastic components?",
+    a: "We can review sourcing requests for custom CNC-machined metal and engineering-plastic components. Available materials, manufacturing capabilities, and lead times are confirmed with our specialized partners for each project.",
   },
   {
-    id: 9,
-    question: "Do you offer finishing and post-processing?",
-    answer:
-      "Yes. Depending on the material and application, post-processing and finishing options can be discussed as part of your project requirements.",
+    category: "Materials",
+    q: "Which materials can you help me source?",
+    a: "Depending on the manufacturing process and project requirements, options may include aluminium, stainless steel, mild steel, brass, and engineering plastics. We confirm material availability and suitability before finalizing a quote.",
   },
   {
-    id: 10,
-    question: "How can I request a quote?",
-    answer:
-      "You can contact us through the Contact page and share your project details, including the part requirements, quantity, material preference, and deadline. Our team can then review your request.",
+    category: "Materials",
+    q: "Can you help me choose the right material?",
+    a: "Absolutely. Tell us how the part will be used, the loads it must withstand, its operating environment, and your budget. We can help you evaluate suitable material options with our manufacturing partners.",
+  },
+  {
+    category: "Quality",
+    q: "How do you ensure part quality?",
+    a: "We communicate your drawings, material specifications, tolerances, and inspection requirements to the relevant manufacturing partner. Any agreed inspection or documentation requirements should be confirmed in your quotation before production.",
+  },
+  {
+    category: "Quality",
+    q: "Can you work with tight tolerances and detailed drawings?",
+    a: "We can review precision requirements and technical drawings with our manufacturing partners to determine feasibility. Achievable tolerances depend on the geometry, material, process, and inspection requirements, so they are confirmed during quotation.",
+  },
+  {
+    category: "Pricing & Delivery",
+    q: "How do I request a quote?",
+    a: "Send us your CAD files, technical drawings, reference images, or a description of your requirements through our contact form. Include the quantity, material, tolerances, and target delivery date where possible so we can assess your request.",
+  },
+  {
+    category: "Pricing & Delivery",
+    q: "What affects the cost of a custom part?",
+    a: "Pricing depends on the manufacturing process, material, part complexity, tolerances, surface finish, order quantity, and shipping requirements. We review these details before preparing a project-specific quotation.",
+  },
+  {
+    category: "Pricing & Delivery",
+    q: "How long will my project take?",
+    a: "Lead times depend on design complexity, material availability, manufacturing capacity, finishing requirements, and shipping destination. We confirm the expected timeline with your quotation or project confirmation.",
+  },
+  {
+    category: "Pricing & Delivery",
+    q: "Do you ship finished parts to my location?",
+    a: "Delivery options depend on your location, part requirements, and shipping arrangements. Share your destination when requesting a quote so we can confirm the available delivery options and estimated timeline.",
+  },
+  {
+    category: "Pricing & Delivery",
+    q: "Can I request a quote before committing to production?",
+    a: "Yes. You can share your requirements for review and receive a quotation before deciding whether to proceed. Production details, pricing, and the expected timeline are confirmed before work begins.",
   },
 ];

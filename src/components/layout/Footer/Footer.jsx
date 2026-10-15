@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
 import {
   Linkedin,
-  Twitter,
+  Facebook,
   Instagram,
-  Youtube,
   Mail,
   Phone,
   MapPin,
@@ -31,23 +30,15 @@ function FooterGear({ className, teeth = 14 }) {
     ]
 
     points.forEach(([radius, currentAngle], pointIndex) => {
-      const x =
-        110 + Math.cos(currentAngle) * radius
-      const y =
-        110 + Math.sin(currentAngle) * radius
+      const x = 110 + Math.cos(currentAngle) * radius
+      const y = 110 + Math.sin(currentAngle) * radius
 
-      path += `${
-        i === 0 && pointIndex === 0 ? "M" : "L"
-      }${x.toFixed(1)} ${y.toFixed(1)} `
+      path += `${i === 0 && pointIndex === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)} `
     })
   }
 
   return (
-    <svg
-      viewBox="0 0 220 220"
-      className={className}
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 220 220" className={className} aria-hidden="true">
       <path
         d={`${path}Z`}
         stroke="currentColor"
@@ -86,44 +77,27 @@ function FooterGear({ className, teeth = 14 }) {
 }
 
 const PAGES = [
-  {
-    label: "Home",
-    to: "/",
-  },
-  {
-    label: "About Us",
-    to: "/about",
-  },
-  {
-    label: "Our Services",
-    to: "/services",
-  },
-  {
-    label: "Contact",
-    to: "/contact",
-  },
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  { label: "Our Services", to: "/services" },
+  { label: "Contact", to: "/contact" },
 ]
 
 const SOCIALS = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://www.linkedin.com",
+    href: "https://www.linkedin.com/company/virtumechanics/",
   },
   {
-    icon: Twitter,
-    label: "Twitter",
-    href: "https://www.twitter.com",
+    icon: Facebook,
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61594991685998",
   },
   {
     icon: Instagram,
     label: "Instagram",
-    href: "https://www.instagram.com",
-  },
-  {
-    icon: Youtube,
-    label: "YouTube",
-    href: "https://www.youtube.com",
+    href: "https://www.instagram.com/virtumechanics/",
   },
 ]
 
@@ -137,10 +111,7 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <div
-        className="footer__gears"
-        aria-hidden="true"
-      >
+      <div className="footer__gears" aria-hidden="true">
         <FooterGear
           className="footer__gear footer__gear--left"
           teeth={12}
@@ -160,12 +131,12 @@ export default function Footer() {
       <div className="container footer__container">
         <div className="footer__top">
           <div className="footer__brand">
-            <Link
-              to="/"
-              className="footer__logo"
-            >
-              <span>VIRTUE</span>
-              <strong>MECHANICS</strong>
+            <Link to="/" className="footer__logo">
+              <img
+                src="/images/logo/virtue-logo.webp"
+                alt="Virtue Mechanics"
+                className="footer__logo-image"
+              />
             </Link>
 
             <p>
@@ -187,20 +158,14 @@ export default function Footer() {
                     rel="noreferrer"
                     aria-label={social.label}
                   >
-                    <Icon
-                      size={17}
-                      strokeWidth={1.8}
-                    />
+                    <Icon size={17} strokeWidth={1.8} />
                   </a>
                 )
               })}
             </div>
           </div>
 
-          <nav
-            className="footer__col"
-            aria-label="Pages"
-          >
+          <nav className="footer__col" aria-label="Pages">
             <h4>Pages</h4>
 
             <ul>
@@ -219,38 +184,30 @@ export default function Footer() {
 
             <ul>
               <li>
-                <a href="mailto:hello@virtuemechanics.com">
+                <a href="mailto:hello@virtumechanics.com">
                   <Mail size={15} />
-                  <span>
-                    hello@virtuemechanics.com
-                  </span>
+                  <span>hello@virtumechanics.com</span>
                 </a>
               </li>
 
+              {/*
               <li>
                 <a href="tel:+15125550142">
                   <Phone size={15} />
-                  <span>
-                    +1 (512) 555-0142
-                  </span>
+                  <span>+1 (512) 555-0142</span>
                 </a>
               </li>
+              */}
 
               <li>
                 <span className="footer__address">
                   <MapPin size={15} />
-                  <span>
-                    42 Precision Way, Austin, TX
-                    78701
-                  </span>
+                  <span>Perth | London</span>
                 </span>
               </li>
             </ul>
 
-            <Link
-              to="/contact"
-              className="footer__quote"
-            >
+            <Link to="/contact" className="footer__quote">
               Start a project
               <ArrowUpRight size={15} />
             </Link>
@@ -259,18 +216,12 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <span className="footer__copyright">
-            © 2026 VIRTUE MECHANICS LLC — ALL
-            RIGHTS RESERVED
+            © 2026 VIRTUE MECHANICS LLC — ALL RIGHTS RESERVED
           </span>
 
           <div className="footer__legal">
-            <Link to="/terms">
-              Terms &amp; Conditions
-            </Link>
-
-            <Link to="/privacy">
-              Privacy Policy
-            </Link>
+            <Link to="/terms">Terms &amp; Conditions</Link>
+            <Link to="/privacypolicy">Privacy Policy</Link>
           </div>
 
           <button

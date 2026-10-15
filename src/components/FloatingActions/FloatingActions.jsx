@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./FloatingActions.css";
+
+/* =========================================
+   EMAIL ICON
+========================================= */
 
 const EmailIcon = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
@@ -17,6 +22,10 @@ const EmailIcon = () => (
   </svg>
 );
 
+/* =========================================
+   WHATSAPP ICON
+========================================= */
+
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
     <path
@@ -30,6 +39,10 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
+/* =========================================
+   LOCATION ICON
+========================================= */
+
 const LocationIcon = () => (
   <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
     <path
@@ -39,6 +52,10 @@ const LocationIcon = () => (
     <circle cx="12" cy="9" r="2.5" fill="#fff" />
   </svg>
 );
+
+/* =========================================
+   FLOATING ACTIONS DATA
+========================================= */
 
 const ACTIONS = [
   {
@@ -57,12 +74,155 @@ const ACTIONS = [
     key: "location",
     label: "Location",
     icon: <LocationIcon />,
-    detail: "Austin, Texas, USA",
+    detail: "Perth | London",
   },
 ];
 
+/* =========================================
+   HERO SELECTORS
+========================================= */
+
+const HERO_SELECTORS = [
+  ".hero",
+  ".hero-section",
+  ".hero-container",
+  ".hero-banner",
+  ".page-hero",
+  ".home-hero",
+  ".about-hero",
+  ".services-hero",
+  ".contact-hero",
+  ".careers-hero",
+  ".career-hero",
+  ".faq-hero",
+  ".blog-hero",
+  ".blogs-hero",
+  ".terms-hero",
+  ".privacy-hero",
+  ".privacy-policy-hero",
+  "[data-hero]",
+  "[data-hero-section]",
+  "[class*='blog'][class*='hero']",
+  "[class*='blogs'][class*='hero']",
+  "[class*='faq'][class*='hero']",
+  "[class*='career'][class*='hero']",
+  "[class*='-hero']",
+  "[class^='hero-']",
+];
+
+/* =========================================
+   FOOTER SELECTORS
+========================================= */
+
+const FOOTER_SELECTORS = [
+  "footer",
+  ".footer",
+  ".site-footer",
+  ".footer-section",
+  ".footer-container",
+  "[data-footer]",
+  "[data-footer-section]",
+];
+
+/* =========================================
+   FLOATING ACTIONS COMPONENT
+========================================= */
+
 export default function FloatingActions() {
   const [openKey, setOpenKey] = useState(null);
+  const [isHidden, setIsHidden] = useState(true);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    let frameId = null;
+
+    const isElementVisible = (element) => {
+      const rect = element.getBoundingClientRect();
+      const style = window.getComputedStyle(element);
+
+      if (
+        style.display === "none" ||
+        style.visibility === "hidden" ||
+        Number(style.opacity) === 0
+      ) {
+        return false;
+      }
+
+      return (
+        rect.width > 0 &&
+        rect.height > 0 &&
+        rect.top < window.innerHeight &&
+        rect.bottom > 0 &&
+        rect.left < window.innerWidth &&
+        rect.right > 0
+      );
+    };
+
+    const checkVisibility = () => {
+      frameId = null;
+
+      const heroes = document.querySelectorAll(
+        HERO_SELECTORS.join(", ")
+      );
+
+      const footers = document.querySelectorAll(
+        FOOTER_SELECTORS.join(", ")
+      );
+
+      const heroVisible = Array.from(heroes).some(
+        isElementVisible
+      );
+
+      const footerVisible = Array.from(footers).some(
+        isElementVisible
+      );
+
+      setIsHidden(heroVisible || footerVisible);
+    };
+
+    const scheduleCheck = () => {
+      if (frameId !== null) return;
+
+      frameId = window.requestAnimationFrame(checkVisibility);
+    };
+
+    // Recheck after the page renders.
+    checkVisibility();
+
+    // Check when the user scrolls or resizes the window.
+    window.addEventListener("scroll", scheduleCheck, {
+      passive: true,
+    });
+
+    window.addEventListener("resize", scheduleCheck);
+    window.addEventListener("load", scheduleCheck);
+
+    // Detect dynamically rendered page sections.
+    const observer = new MutationObserver(scheduleCheck);
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", scheduleCheck);
+      window.removeEventListener("resize", scheduleCheck);
+      window.removeEventListener("load", scheduleCheck);
+
+      observer.disconnect();
+
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [location.pathname]);
+
+  // Hide actions over every detected hero and footer.
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <div className="fa-container">
@@ -72,17 +232,26 @@ export default function FloatingActions() {
         return (
           <div
             key={action.key}
-            className={`fa-row ${isOpen ? "fa-row--open" : ""}`}
+            className={`fa-row ${
+              isOpen ? "fa-row--open" : ""
+            }`}
             onMouseEnter={() => setOpenKey(action.key)}
             onMouseLeave={() => setOpenKey(null)}
           >
             <div className="fa-detail">
-              <span className="fa-detail__text">{action.detail}</span>
+              <span className="fa-detail__text">
+                {action.detail}
+              </span>
             </div>
 
             <div className="fa-pill">
-              <span className="fa-pill__icon">{action.icon}</span>
-              <span className="fa-pill__label">{action.label}</span>
+              <span className="fa-pill__icon">
+                {action.icon}
+              </span>
+
+              <span className="fa-pill__label">
+                {action.label}
+              </span>
             </div>
           </div>
         );

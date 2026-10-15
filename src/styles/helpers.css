@@ -112,13 +112,22 @@
 .hud--bl { bottom: 14px; left: 14px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
 .hud--br { bottom: 14px; right: 14px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
 
-/* ============ Marquee ============ */
+
+/* =========================================
+   MARQUEE — TICKER CONTAINER
+   ========================================= */
+
 .marquee {
-  overflow: hidden;
   position: relative;
   display: flex;
+  overflow: hidden;
+  width: 100%;
   user-select: none;
 }
+
+/* =========================================
+   MARQUEE — ANIMATED TRACK
+   ========================================= */
 
 .marquee__track {
   display: flex;
@@ -127,7 +136,12 @@
   width: max-content;
   min-width: 100%;
   animation: marquee 36s linear infinite;
+  will-change: transform;
 }
+
+/* =========================================
+   MARQUEE — INFINITE SCROLL
+   ========================================= */
 
 @keyframes marquee {
   to {
@@ -135,23 +149,64 @@
   }
 }
 
+/* Pause animation on hover */
+
 .marquee:hover .marquee__track {
   animation-play-state: paused;
 }
+
+/* =========================================
+   MARQUEE — INDIVIDUAL ITEMS
+   ========================================= */
 
 .marquee__item {
   display: inline-flex;
   align-items: center;
   flex: 0 0 auto;
+  white-space: nowrap;
 }
 
-.marquee__plus {
+/* =========================================
+   MARQUEE — GREEN CIRCLE SEPARATOR
+   ========================================= */
+
+.marquee__circle {
+  display: inline-block;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
   margin: 0 34px;
-  font-family: var(--font-mono);
-  color: var(--green);
-  font-size: 13px;
+  box-sizing: border-box;
+
+  border: 4.5px solid var(--green, #00ff88);
+  border-radius: 50%;
+
+  background: transparent;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
 }
 
+/* =========================================
+   MARQUEE — RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .marquee__track {
+    animation-duration: 28s;
+  }
+
+  .marquee__circle {
+    flex-basis: 7px;
+    width: 7px;
+    height: 7px;
+    margin: 0 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation-duration: 60s;
+  }
+}
 /* ============ Status dot ============ */
 .pulse-dot {
   position: relative;

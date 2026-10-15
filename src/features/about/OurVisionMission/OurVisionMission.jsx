@@ -1,148 +1,160 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import visionMain from "../../../assets/images/About/VisionAndMission/Vision-main.webp";
 import visionSecondary from "../../../assets/images/About/VisionAndMission/Vision-secondary.webp";
 import "./OurVisionMission.css";
 
 const EASE = [0.22, 1, 0.36, 1];
+const MOBILE_QUERY = "(max-width: 900px)";
 
-const mainImageVariants = {
-  hidden: {
-    opacity: 0,
-    x: -80,
-    y: -30,
-    scale: 0.96,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 1,
-      ease: EASE,
-    },
-  },
-};
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia(MOBILE_QUERY).matches
+      : false
+  );
 
-const secondaryImageVariants = {
-  hidden: {
-    opacity: 0,
-    x: 80,
-    y: 30,
-    scale: 0.96,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 1,
-      delay: 0.15,
-      ease: EASE,
-    },
-  },
-};
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const onChange = (e) => setIsMobile(e.matches);
 
-const contentVariants = {
-  hidden: {
-    opacity: 0,
-    x: 70,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.9,
-      ease: EASE,
-    },
-  },
-};
+    setIsMobile(mql.matches);
+    mql.addEventListener("change", onChange);
 
-const textVariants = {
-  hidden: {
-    opacity: 0,
-    y: 25,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      ease: EASE,
-    },
-  },
-};
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
-const introVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      delay: 0.15,
-      ease: EASE,
-    },
-  },
-};
+  return isMobile;
+}
 
-const visionVariants = {
-  hidden: {
-    opacity: 0,
-    y: 25,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      delay: 0.28,
-      ease: EASE,
-    },
-  },
-};
+function buildVariants(isMobile, reduce) {
+  const move = (value) => (reduce ? 0 : value);
+  const dur = (value) => (reduce ? 0.4 : value);
+  const delay = (value) => (reduce || isMobile ? 0 : value);
 
-const missionVariants = {
-  hidden: {
-    opacity: 0,
-    y: 25,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-      delay: 0.4,
-      ease: EASE,
+  return {
+    mainImage: {
+      hidden: {
+        opacity: 0,
+        x: isMobile ? 0 : move(-80),
+        y: isMobile ? move(40) : move(-30),
+        scale: reduce ? 1 : 0.96,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        transition: { duration: dur(1), ease: EASE },
+      },
     },
-  },
-};
+    secondaryImage: {
+      hidden: {
+        opacity: 0,
+        x: isMobile ? 0 : move(80),
+        y: move(isMobile ? 40 : 30),
+        scale: reduce ? 1 : 0.96,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        transition: {
+          duration: dur(1),
+          delay: reduce ? 0 : isMobile ? 0.12 : 0.15,
+          ease: EASE,
+        },
+      },
+    },
+    content: {
+      hidden: { opacity: 0, x: move(70) },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: dur(0.9), ease: EASE },
+      },
+    },
+    text: {
+      hidden: { opacity: 0, y: move(25) },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: dur(0.75), ease: EASE },
+      },
+    },
+    intro: {
+      hidden: { opacity: 0, y: move(20) },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: dur(0.75), delay: delay(0.15), ease: EASE },
+      },
+    },
+    vision: {
+      hidden: { opacity: 0, y: move(25) },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: dur(0.75), delay: delay(0.28), ease: EASE },
+      },
+    },
+    mission: {
+      hidden: { opacity: 0, y: move(25) },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: dur(0.75), delay: delay(0.4), ease: EASE },
+      },
+    },
+  };
+}
 
 export default function OurVisionMission() {
   const sectionRef = useRef(null);
+  const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
 
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.18,
   });
 
+  const v = buildVariants(isMobile, reduce);
+
+  // Mobile: har element apni baari pe animate hota hai.
+  // Desktop: pehle jaisa, poora section ek saath.
+  const trigger = isMobile
+    ? {
+        initial: "hidden",
+        whileInView: "visible",
+        viewport: { once: true, amount: 0.2 },
+      }
+    : {
+        initial: "hidden",
+        animate: isInView ? "visible" : "hidden",
+      };
+
+  // Desktop pe content wrapper animate hota hai aur children inherit karte hain.
+  // Mobile pe wrapper "display: contents" hai, is liye children khud trigger hote hain.
+  const contentWrapperProps = isMobile
+    ? {}
+    : {
+        variants: v.content,
+        initial: "hidden",
+        animate: isInView ? "visible" : "hidden",
+      };
+
+  const childTrigger = isMobile ? trigger : {};
+
   return (
-    <section
-      ref={sectionRef}
-      className="our-vision-mission"
-    >
+    <section ref={sectionRef} className="our-vision-mission">
       <div className="our-vision-mission__container">
         <div className="our-vision-mission__images">
           <motion.div
             className="our-vision-mission__image our-vision-mission__image--main"
-            variants={mainImageVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            variants={v.mainImage}
+            {...trigger}
           >
             <img
               src={visionMain}
@@ -154,9 +166,8 @@ export default function OurVisionMission() {
 
           <motion.div
             className="our-vision-mission__image our-vision-mission__image--secondary"
-            variants={secondaryImageVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            variants={v.secondaryImage}
+            {...trigger}
           >
             <img
               src={visionSecondary}
@@ -169,27 +180,28 @@ export default function OurVisionMission() {
 
         <motion.div
           className="our-vision-mission__content"
-          variants={contentVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          {...contentWrapperProps}
         >
           <motion.div
             className="our-vision-mission__eyebrow"
-            variants={textVariants}
+            variants={v.text}
+            {...childTrigger}
           >
             Our Vision & Mission
           </motion.div>
 
           <motion.h2
             className="our-vision-mission__title"
-            variants={textVariants}
+            variants={v.text}
+            {...childTrigger}
           >
             Shaping a Future Through 3D Printing
           </motion.h2>
 
           <motion.p
             className="our-vision-mission__intro"
-            variants={introVariants}
+            variants={v.intro}
+            {...childTrigger}
           >
             We combine advanced technology, precision, and creativity
             to transform ideas into innovative, functional products.
@@ -197,7 +209,8 @@ export default function OurVisionMission() {
 
           <motion.div
             className="our-vision-mission__block"
-            variants={visionVariants}
+            variants={v.vision}
+            {...childTrigger}
           >
             <h3>Empowering Innovation</h3>
 
@@ -210,7 +223,8 @@ export default function OurVisionMission() {
 
           <motion.div
             className="our-vision-mission__block"
-            variants={missionVariants}
+            variants={v.mission}
+            {...childTrigger}
           >
             <h3>Shaping a Boundless Future</h3>
 

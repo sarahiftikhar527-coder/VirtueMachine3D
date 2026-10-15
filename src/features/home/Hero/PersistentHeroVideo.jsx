@@ -1,31 +1,65 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useLocation } from "react-router-dom";
 import heroVideo from "../../../assets/videos/Home/Hero/hero-bg.mp4";
-import heroVideo2 from "../../../assets/videos/Home/Hero/hero-bg-2.mp4";
 
 const HeroVideoContext = createContext(null);
 
 export function HeroVideoProvider({ children }) {
   const videoRef = useRef(null);
-  const video2Ref = useRef(null);
-  const [videoFinished, setVideoFinished] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(true);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    const firstVideo = videoRef.current;
+  /* =========================================
+     VIDEO INITIALIZATION
+     ========================================= */
 
-    if (!firstVideo) {
-      return;
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    let isMounted = true;
+
+    const handleVideoReady = () => {
+      if (!isMounted) return;
+
+      setVideoLoaded(true);
+
+      video.play().catch(() => {
+        // Browser autoplay restrictions are handled gracefully.
+      });
+    };
+
+    if (video.readyState >= 3) {
+      handleVideoReady();
+    } else {
+      video.addEventListener("canplay", handleVideoReady, {
+        once: true,
+      });
     }
 
-    firstVideo.play().catch(() => {});
+    return () => {
+      isMounted = false;
+      video.removeEventListener("canplay", handleVideoReady);
+    };
   }, []);
+
+  /* =========================================
+     SHOW VIDEO ONLY ON HOME HERO
+     ========================================= */
 
   useEffect(() => {
     const updateVideoVisibility = () => {
       const isHome = pathname === "/";
-      const isHeroArea = window.scrollY < window.innerHeight * 0.95;
+      const isHeroArea =
+        window.scrollY < window.innerHeight * 0.95;
 
       setShowVideo(isHome && isHeroArea);
     };
@@ -36,26 +70,23 @@ export function HeroVideoProvider({ children }) {
       passive: true,
     });
 
+    window.addEventListener("resize", updateVideoVisibility);
+
     return () => {
-      window.removeEventListener("scroll", updateVideoVisibility);
+      window.removeEventListener(
+        "scroll",
+        updateVideoVisibility
+      );
+
+      window.removeEventListener(
+        "resize",
+        updateVideoVisibility
+      );
     };
   }, [pathname]);
 
-  const handleVideoEnd = () => {
-    setVideoFinished(true);
-
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
-
-    if (video2Ref.current) {
-      video2Ref.current.currentTime = 0;
-      video2Ref.current.play().catch(() => {});
-    }
-  };
-
   return (
-    <HeroVideoContext.Provider value={{ videoFinished }}>
+    <HeroVideoContext.Provider value={{ videoLoaded }}>
       <div
         aria-hidden="true"
         style={{
@@ -65,34 +96,31 @@ export function HeroVideoProvider({ children }) {
           overflow: "hidden",
           pointerEvents: "none",
           opacity: showVideo ? 1 : 0,
-          transition: "opacity 0.35s ease",
+          transition: "opacity 0.6s ease",
           background: "#05090d",
         }}
       >
         <video
           ref={videoRef}
-          className="hero__background-video hero__background-video--one"
+          className="hero__background-video"
           autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={handleVideoEnd}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
-
-        <video
-          ref={video2Ref}
-          className={`hero__background-video hero__background-video--two ${
-            videoFinished ? "hero__background-video--active" : ""
-          }`}
           muted
           playsInline
           loop
           preload="auto"
         >
-          <source src={heroVideo2} type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
+
+        {/* Soft white overlay for readable black text */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "rgba(255, 255, 255, 0.3)",
+            pointerEvents: "none",
+          }}
+        />
       </div>
 
       {children}
@@ -104,7 +132,9 @@ export function useHeroVideo() {
   const context = useContext(HeroVideoContext);
 
   if (!context) {
-    throw new Error("useHeroVideo must be used inside HeroVideoProvider");
+    throw new Error(
+      "useHeroVideo must be used inside HeroVideoProvider"
+    );
   }
 
   return context;

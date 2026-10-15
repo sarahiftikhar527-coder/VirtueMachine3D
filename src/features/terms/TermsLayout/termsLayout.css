@@ -1,0 +1,10 @@
+.terms-content-layout {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .terms-content-layout { grid-template-columns: 1fr; gap: 25px; }
+  .terms-sidebar { order: 2; }
+}

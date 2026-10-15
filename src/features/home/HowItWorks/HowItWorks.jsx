@@ -1,7 +1,12 @@
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import howItWorksVideo from "../../../assets/videos/Home/HowItWorks/HowItWorks.mp4"
-import "./HowItWorks.css"
+
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+} from "framer-motion";
+import { useRef } from "react";
+import howItWorksVideo from "../../../assets/videos/Home/HowItWorks/HowItWorks.mp4";
+import "./HowItWorks.css";
 
 const steps = [
   {
@@ -19,7 +24,7 @@ const steps = [
     title: "Quality Assurance and Delivery",
     text: "Every finished part is carefully checked for quality before being prepared for reliable delivery.",
   },
-]
+];
 
 const contentVariants = {
   hidden: {},
@@ -29,39 +34,39 @@ const contentVariants = {
       delayChildren: 0.05,
     },
   },
-}
+};
 
 const revealFromRight = {
   hidden: {
     opacity: 0,
-    x: 100,
+    x: 70,
   },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.9,
+      duration: 0.85,
       ease: [0.16, 1, 0.3, 1],
     },
   },
-}
+};
 
 const numberReveal = {
   hidden: {
     opacity: 0,
-    x: 70,
-    scale: 0.75,
+    x: 50,
+    scale: 0.85,
   },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.85,
+      duration: 0.75,
       ease: [0.16, 1, 0.3, 1],
     },
   },
-}
+};
 
 const videoReveal = {
   hidden: {
@@ -76,16 +81,21 @@ const videoReveal = {
       ease: [0.22, 1, 0.36, 1],
     },
   },
-}
+};
 
 export default function HowItWorks() {
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   const isInView = useInView(sectionRef, {
     once: true,
-    amount: 0.6,
+    amount: 0.15,
     margin: "0px 0px -5% 0px",
-  })
+  });
+
+  const shouldReduceMotion = useReducedMotion();
+
+  const animationState =
+    shouldReduceMotion || isInView ? "visible" : "hidden";
 
   return (
     <section
@@ -94,11 +104,12 @@ export default function HowItWorks() {
       id="how-it-works"
     >
       <div className="how-it-works__container">
+        {/* VIDEO — left side on desktop */}
         <motion.div
           className="how-it-works__video-wrap"
           variants={videoReveal}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate={animationState}
         >
           <video
             className="how-it-works__video"
@@ -111,11 +122,12 @@ export default function HowItWorks() {
           />
         </motion.div>
 
+        {/* CONTENT — right side on desktop */}
         <motion.div
           className="how-it-works__content"
           variants={contentVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate={animationState}
         >
           <motion.div
             className="how-it-works__intro"
@@ -155,7 +167,6 @@ export default function HowItWorks() {
                   variants={revealFromRight}
                 >
                   <h3>{step.title}</h3>
-
                   <p>{step.text}</p>
                 </motion.div>
               </motion.div>
@@ -164,5 +175,5 @@ export default function HowItWorks() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

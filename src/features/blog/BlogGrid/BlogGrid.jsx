@@ -1,135 +1,134 @@
+
 import { motion } from "framer-motion"
 import { ArrowUpRight, CalendarDays, Clock3 } from "lucide-react"
 import { Link } from "react-router-dom"
-import { BLOG_POSTS } from "../../../data/blog/posts.js";
+import { BLOG_POSTS } from "../../../data/blog/posts.js"
+
+import article1 from "../../../assets/images/Blog/Article/article1.webp"
+import article2 from "../../../assets/images/Blog/Article/article2.webp"
+import article3 from "../../../assets/images/Blog/Article/article3.webp"
+import article4 from "../../../assets/images/Blog/Article/article4.webp"
+import article5 from "../../../assets/images/Blog/Article/article5.webp"
+import article6 from "../../../assets/images/Blog/Article/article6.webp"
+
 import "./blogGrid.css"
 
 const EASE = [0.22, 1, 0.36, 1]
 
+const ARTICLE_IMAGES = [
+  article1,
+  article2,
+  article3,
+  article4,
+  article5,
+  article6,
+]
+
 export default function BlogGrid() {
-return ( <section className="bloggrid"> <div className="container">
-    <div className="bloggrid__top">
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{
-          duration: 0.7,
-          ease: EASE,
-        }}
-      >
-        <span className="bloggrid__eyebrow">
-          LATEST ARTICLES
-        </span>
-
-        <h2>
-          Ideas built around
-          <span>better making.</span>
-        </h2>
-      </motion.div>
-
-      <motion.p
-        className="bloggrid__intro"
-        initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{
-          duration: 0.7,
-          ease: EASE,
-        }}
-      >
-        Practical knowledge from the world of additive
-        manufacturing, engineering and product
-        development.
-      </motion.p>
-    </div>
-
-    <div className="bloggrid__cards">
-      {BLOG_POSTS.map((post, index) => (
-        <motion.article
-          key={post.id}
-          className="blogcard"
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          transition={{
-            duration: 0.65,
-            delay: index * 0.07,
-            ease: EASE,
-          }}
-        >
-          <div className="blogcard__visual">
-
-            <span className="blogcard__number">
-              {String(index + 1).padStart(2, "0")}
+  return (
+    <section className="bloggrid">
+      <div className="container">
+        <div className="bloggrid__top">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.65, ease: EASE }}
+          >
+            <span className="bloggrid__eyebrow">
+              LATEST ARTICLES
             </span>
 
-            <span className="blogcard__category">
-              {post.category}
-            </span>
+            <h2>
+              Ideas built around
+              <span>better making.</span>
+            </h2>
+          </motion.div>
 
-            <div className="blogcard__pattern">
-              <span />
-              <span />
-              <span />
-            </div>
+          <motion.p
+            className="bloggrid__intro"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: EASE }}
+          >
+            Practical knowledge from 3D printing,
+            precision engineering and product development.
+          </motion.p>
+        </div>
 
-            <Link
-              to={`/blog/${post.id}`}
-              className="blogcard__arrow"
-              aria-label={`Read ${post.title}`}
+        <div className="bloggrid__cards">
+          {BLOG_POSTS.map((post, index) => (
+            <motion.article
+              key={post.id}
+              className="blogcard"
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.12 }}
+              transition={{
+                duration: 0.6,
+                delay: (index % 3) * 0.08,
+                ease: EASE,
+              }}
             >
-              <ArrowUpRight size={19} />
-            </Link>
+              <Link
+                to={`/blog/${post.id}`}
+                className="blogcard__visual"
+                aria-label={`Read ${post.title}`}
+              >
+                <img
+                  className="blogcard__image"
+                  src={ARTICLE_IMAGES[index % ARTICLE_IMAGES.length]}
+                  alt={post.title}
+                  loading="lazy"
+                />
 
-          </div>
+                <span className="blogcard__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
 
-          <div className="blogcard__content">
+                <span className="blogcard__category">
+                  {post.category}
+                </span>
 
-            <div className="blogcard__meta">
-              <span>
-                <CalendarDays size={13} />
-                {post.date}
-              </span>
+                <span className="blogcard__arrow">
+                  <ArrowUpRight size={18} />
+                </span>
+              </Link>
 
-              <span>
-                <Clock3 size={13} />
-                {post.readTime}
-              </span>
-            </div>
+              <div className="blogcard__content">
+                <div className="blogcard__meta">
+                  <span>
+                    <CalendarDays size={13} />
+                    {post.date}
+                  </span>
 
-            <h3>
-              {post.title}
-            </h3>
+                  <span>
+                    <Clock3 size={13} />
+                    {post.readTime}
+                  </span>
+                </div>
 
-            <p>
-              {post.excerpt}
-            </p>
+                <h3>
+                  <Link to={`/blog/${post.id}`}>
+                    {post.title}
+                  </Link>
+                </h3>
 
-            <Link
-              to={`/blog/${post.id}`}
-              className="blogcard__read"
-            >
-              <span>Read article</span>
-              <ArrowUpRight size={15} />
-            </Link>
+                <p>{post.excerpt}</p>
 
-          </div>
-        </motion.article>
-      ))}
-    </div>
-
-  </div>
-</section>
-
-)
+                <Link
+                  to={`/blog/${post.id}`}
+                  className="blogcard__read"
+                >
+                  <span>Read article</span>
+                  <ArrowUpRight size={15} />
+                </Link>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }

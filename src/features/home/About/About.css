@@ -1,3 +1,7 @@
+/* =========================================
+   ABOUT SECTION — DESKTOP DESIGN PRESERVED
+   ========================================= */
+
 .about {
   position: relative;
   overflow: hidden;
@@ -98,6 +102,11 @@
   object-fit: cover;
 }
 
+/* =========================================
+   TABLET — RESPONSIVE ONLY
+   Desktop remains unchanged above 800px
+   ========================================= */
+
 @media (max-width: 800px) {
   .about {
     padding: 85px 0 100px;
@@ -117,20 +126,26 @@
 
   .about__row,
   .about__row:nth-child(2) {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
   }
 
-  .about__row:nth-child(2) .about__video {
+  /* First section: text → first video */
+  .about__row:first-child .about__text {
     order: 1;
   }
 
-  .about__row:nth-child(2) .about__text {
+  .about__row:first-child .about__video {
     order: 2;
   }
 
-  .about__video {
-    height: 280px;
+  /* Second section: text → second video */
+  .about__row--second .about__text--second {
+    order: 1;
+  }
+
+  .about__row--second .about__video--second {
+    order: 2;
   }
 
   .about__text {
@@ -140,7 +155,15 @@
   .about__text p {
     max-width: 100%;
   }
+
+  .about__video {
+    height: 280px;
+  }
 }
+
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 520px) {
   .about {
@@ -151,6 +174,10 @@
     width: min(100% - 28px, 500px);
   }
 
+  .about__heading-wrap {
+    margin-bottom: 42px;
+  }
+
   .about__heading {
     font-size: 44px;
   }
@@ -159,12 +186,19 @@
     gap: 58px;
   }
 
+  .about__row,
+  .about__row:nth-child(2) {
+    gap: 22px;
+  }
+
   .about__text h3 {
     font-size: 30px;
+    line-height: 1.18;
   }
 
   .about__text p {
     max-width: 100%;
+    margin-top: 15px;
     font-size: 14px;
     line-height: 1.7;
   }
@@ -174,6 +208,45 @@
     border-radius: 7px;
   }
 }
+
+/* =========================================
+   EXTRA SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 360px) {
+  .about {
+    padding: 65px 0 75px;
+  }
+
+  .about__container {
+    width: calc(100% - 24px);
+  }
+
+  .about__heading {
+    font-size: 38px;
+  }
+
+  .about__rows {
+    gap: 48px;
+  }
+
+  .about__text h3 {
+    font-size: 27px;
+  }
+
+  .about__text p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .about__video {
+    height: 205px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .about__text,

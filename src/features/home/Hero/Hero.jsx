@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Button from "../../../components/ui/Button.jsx";
 import Marquee from "../../../components/ui/Marquee.jsx";
 import { HERO_TICKER } from "../../../data/stats.js";
-import { useHeroVideo } from "./PersistentHeroVideo.jsx";
 import "./hero.css";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -10,9 +9,9 @@ const EASE = [0.22, 1, 0.36, 1];
 const wordVariants = {
   hidden: {
     opacity: 0,
-    y: 22,
-    scale: 0.98,
-    filter: "blur(7px)",
+    y: 28,
+    scale: 0.97,
+    filter: "blur(8px)",
   },
   show: {
     opacity: 1,
@@ -20,7 +19,7 @@ const wordVariants = {
     scale: 1,
     filter: "blur(0px)",
     transition: {
-      duration: 0.85,
+      duration: 0.95,
       ease: EASE,
     },
   },
@@ -30,8 +29,8 @@ const titleContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.05,
+      staggerChildren: 0.16,
+      delayChildren: 0.08,
     },
   },
 };
@@ -40,8 +39,8 @@ const paragraphContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.065,
-      delayChildren: 0.18,
+      staggerChildren: 0.075,
+      delayChildren: 0.25,
     },
   },
 };
@@ -49,9 +48,9 @@ const paragraphContainer = {
 const actionsReveal = {
   hidden: {
     opacity: 0,
-    y: 12,
-    scale: 0.99,
-    filter: "blur(4px)",
+    y: 18,
+    scale: 0.98,
+    filter: "blur(5px)",
   },
   show: {
     opacity: 1,
@@ -59,8 +58,8 @@ const actionsReveal = {
     scale: 1,
     filter: "blur(0px)",
     transition: {
-      duration: 0.8,
-      delay: 0.18,
+      duration: 0.85,
+      delay: 0.25,
       ease: EASE,
     },
   },
@@ -79,18 +78,16 @@ const paragraphWords = [
 ];
 
 export default function Hero() {
-  const { videoFinished } = useHeroVideo();
-
   return (
     <section
-      className={`hero ${videoFinished ? "hero--revealed" : ""}`}
+      className="hero"
       aria-label="Virtue Mechanics introduction"
     >
       <div className="container hero__inner">
         <motion.div
           className="hero__content"
           initial="hidden"
-          animate={videoFinished ? "show" : "hidden"}
+          animate="show"
         >
           <motion.div
             className="hero__title-wrap"
@@ -139,13 +136,25 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div
-        className={`hero__ticker ${
-          videoFinished ? "hero__ticker--visible" : ""
-        }`}
+      <motion.div
+        className="hero__ticker"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          opacity: {
+            duration: 0.8,
+            delay: 0.35,
+            ease: "easeOut",
+          },
+          y: {
+            duration: 0.9,
+            delay: 0.35,
+            ease: EASE,
+          },
+        }}
       >
         <Marquee items={HERO_TICKER} />
-      </div>
+      </motion.div>
     </section>
   );
 }

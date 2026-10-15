@@ -92,9 +92,6 @@ export default function Testimonials() {
                 <div className="tst-card__info">
                   <strong>{t.name}</strong>
 
-                  <span>
-                    {t.role} — {t.company}
-                  </span>
                 </div>
               </div>
 

@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion"
 import "./blogHero.css"
 
@@ -6,28 +7,30 @@ const EASE = [0.22, 1, 0.36, 1]
 export default function BlogHero() {
   return (
     <section className="bloghero">
+      <div className="bloghero__overlay" />
+
       <div className="bloghero__grid" />
 
-      <div className="bloghero__glow bloghero__glow--one" />
-      <div className="bloghero__glow bloghero__glow--two" />
+      <div className="bloghero__line bloghero__line--one" />
+      <div className="bloghero__line bloghero__line--two" />
 
       <div className="container bloghero__container">
         <motion.div
           className="bloghero__content"
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.8,
+            duration: 0.9,
             ease: EASE,
           }}
         >
           <motion.span
             className="bloghero__eyebrow"
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.6,
-              delay: 0.1,
+              duration: 0.7,
+              delay: 0.12,
               ease: EASE,
             }}
           >
@@ -35,11 +38,11 @@ export default function BlogHero() {
           </motion.span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.7,
-              delay: 0.18,
+              duration: 0.85,
+              delay: 0.2,
               ease: EASE,
             }}
           >
@@ -48,11 +51,11 @@ export default function BlogHero() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.7,
-              delay: 0.28,
+              duration: 0.8,
+              delay: 0.32,
               ease: EASE,
             }}
           >
@@ -63,12 +66,12 @@ export default function BlogHero() {
         </motion.div>
 
         <motion.div
-          className="bloghero__line"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
+          className="bloghero__bottom-line"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 1 }}
           transition={{
-            duration: 1,
-            delay: 0.45,
+            duration: 1.2,
+            delay: 0.5,
             ease: EASE,
           }}
         />

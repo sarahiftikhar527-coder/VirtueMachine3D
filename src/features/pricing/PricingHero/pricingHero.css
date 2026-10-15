@@ -1,0 +1,89 @@
+.prh {
+  /* upar ki padding fixed navbar ke liye hai */
+  padding: clamp(112px, 12vw, 152px) clamp(16px, 5vw, 56px) clamp(32px, 5vw, 56px);
+}
+
+.prh__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  animation: prh-in 0.6s ease-out both;
+}
+
+.prh__title {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.prh__text {
+  margin: 16px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--p-muted);
+}
+
+/* toggle */
+.prh__toggle {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 28px;
+  padding: 4px;
+  border: 1px solid var(--p-line);
+  border-radius: 999px;
+}
+
+.prh__opt {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--p-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.prh__opt span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
+.prh__opt:hover {
+  color: var(--p-ink);
+}
+.prh__opt.is-on {
+  background: var(--p-ink);
+  color: #fff;
+}
+.prh__opt:focus-visible {
+  outline: 2px solid var(--p-accent);
+  outline-offset: 2px;
+}
+
+@keyframes prh-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (max-width: 420px) {
+  .prh__opt {
+    padding: 9px 14px;
+  }
+  .prh__opt span {
+    display: none; /* chhoti screen pe sirf Standard / Rush */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prh__inner {
+    animation: none;
+  }
+}

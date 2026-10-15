@@ -1,3 +1,8 @@
+/* =========================================
+   HERO — PREMIUM INDUSTRIAL DESIGN
+   Desktop design preserved
+   ========================================= */
+
 .hero {
   position: relative;
   z-index: 1;
@@ -10,46 +15,28 @@
   padding-top: var(--navbar-h);
 }
 
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background: #05090d;
-}
+/* =========================================
+   BACKGROUND VIDEO
+   Desktop blur remains unchanged
+   ========================================= */
 
 .hero__background-video {
   position: absolute;
   inset: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
   object-position: center;
-  filter: none;
-  transform: scale(1);
+  filter: blur(2px) saturate(0.95);
+  transform: scale(1.02);
+  will-change: transform, filter;
 }
 
-.hero__background-video--one {
-  z-index: 1;
-  opacity: 1;
-  transition: opacity 0.2s linear;
-}
-
-.hero__background-video--two {
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero__background-video--one.hero__background-video--hidden {
-  opacity: 0;
-}
-
-.hero__background-video--two.hero__background-video--active {
-  opacity: 1;
-}
+/* =========================================
+   HERO LAYOUT
+   ========================================= */
 
 .hero__inner {
   position: relative;
@@ -71,17 +58,19 @@
   transform-origin: center center;
 }
 
+/* =========================================
+   MAIN TITLE
+   ========================================= */
+
 .hero__title {
   margin: 0;
-  color: #fff;
-  font-size: clamp(54px, 8vw, 112px);
-  line-height: 0.92;
-  letter-spacing: -0.055em;
+  color: #000;
+  font-size: clamp(44px, 6vw, 82px);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
   font-weight: 700;
   text-transform: uppercase;
-  text-shadow:
-    0 5px 30px rgba(0, 0, 0, 0.32),
-    0 2px 8px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.55);
 }
 
 .hero__word {
@@ -95,13 +84,18 @@
   margin-right: 0;
 }
 
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
 .hero__lede {
   max-width: 580px;
   margin: 25px 0 0;
-  color: rgba(255, 255, 255, 0.92);
+  color: #000;
   font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 500;
   line-height: 1.65;
-  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
 .hero__word--paragraph {
@@ -111,6 +105,11 @@
 .hero__word--paragraph:last-child {
   margin-right: 0;
 }
+
+/* =========================================
+   HERO BUTTONS
+   Desktop dimensions preserved
+   ========================================= */
 
 .hero__actions {
   display: flex;
@@ -125,6 +124,8 @@
   overflow: hidden;
   isolation: isolate;
 }
+
+/* Premium moving reflection */
 
 .hero__actions .btn::before {
   content: "";
@@ -177,24 +178,19 @@
   }
 }
 
+/* =========================================
+   TICKER / MARQUEE
+   ========================================= */
+
 .hero__ticker {
   position: relative;
   z-index: 4;
-  opacity: 0;
-  transform: translateY(18px);
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding-block: 15px;
-  pointer-events: none;
-  transition:
-    opacity 0.8s ease 0.35s,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
-}
-
-.hero__ticker--visible {
-  opacity: 1;
-  transform: translateY(0);
   pointer-events: auto;
 }
 
@@ -203,13 +199,43 @@
   font-size: 11.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
 }
 
-@media (max-width: 900px) {
+/* =========================================
+   TABLET RESPONSIVENESS
+   901px to 1100px
+   ========================================= */
+
+@media (min-width: 901px) and (max-width: 1100px) {
   .hero__inner {
-    padding-block: 70px;
+    padding-block: 65px;
+  }
+
+  .hero__content {
+    max-width: 760px;
+  }
+}
+
+/* =========================================
+   TABLETS
+   641px to 900px
+   ========================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero__background-video {
+    filter: blur(4px) saturate(0.95);
+    transform: scale(1.06);
+  }
+
+  .hero__inner {
+    padding-block: 65px 75px;
+    align-items: center;
   }
 
   .hero__content {
@@ -217,51 +243,28 @@
   }
 
   .hero__title {
-    font-size: clamp(48px, 10vw, 82px);
+    font-size: clamp(44px, 8vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.045em;
   }
 
   .hero__lede {
-    max-width: 560px;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero {
-    min-height: 100svh;
+    max-width: 540px;
+    margin-top: 22px;
+    font-size: 16px;
+    line-height: 1.65;
   }
 
-  .hero__inner {
-    padding-block: 50px 70px;
-    align-items: center;
-  }
-
-  .hero__title {
-    font-size: clamp(42px, 12vw, 62px);
-    line-height: 0.94;
-  }
-
-  .hero__word {
-    margin-right: 0.2em;
-  }
-
-  .hero__lede {
-    max-width: 35ch;
-    margin-top: 20px;
-    font-size: 15px;
-    line-height: 1.6;
-  }
-
-  .hero__word--paragraph {
-    margin-right: 0.22em;
-  }
+  /* Smaller buttons on tablet only */
 
   .hero__actions {
-    width: 100%;
-    margin-top: 25px;
+    gap: 11px;
+    margin-top: 26px;
   }
 
   .hero__actions .btn {
-    width: 100%;
+    font-size: 14px;
+    padding: 11px 19px;
   }
 
   .hero__ticker {
@@ -269,13 +272,145 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__background-video--one,
-  .hero__background-video--two,
-  .hero__ticker {
-    transition: none;
+/* =========================================
+   MOBILE
+   640px and below
+   ========================================= */
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 100svh;
   }
 
+  /* Stronger blur makes busy video frames less distracting */
+
+  .hero__background-video {
+    filter: blur(5px) saturate(0.9);
+    transform: scale(1.08);
+  }
+
+  .hero__inner {
+    padding-block: 48px 58px;
+    align-items: center;
+  }
+
+  .hero__content {
+    max-width: 100%;
+  }
+
+  /* Clean, bold and balanced mobile headline */
+
+  .hero__title-wrap {
+    max-width: 100%;
+  }
+
+  .hero__title {
+    max-width: 100%;
+    font-size: clamp(38px, 10.5vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    overflow-wrap: normal;
+    text-shadow: 0 0 22px rgba(255, 255, 255, 0.72);
+  }
+
+  .hero__word {
+    margin-right: 0.19em;
+  }
+
+  /* More readable animated description */
+
+  .hero__lede {
+    max-width: 36ch;
+    margin-top: 19px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.8;
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.8);
+  }
+
+  .hero__word--paragraph {
+    margin-right: 0.23em;
+  }
+
+  /* Compact buttons that fit smaller screens */
+
+  .hero__actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .hero__actions .btn {
+    width: auto;
+    max-width: 100%;
+    min-height: 40px;
+    padding: 10px 14px;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .hero__ticker {
+    padding-block: 12px;
+  }
+
+  .hero__ticker .marquee__item span:first-child {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE
+   380px and below
+   ========================================= */
+
+@media (max-width: 380px) {
+  .hero__inner {
+    padding-block: 38px 48px;
+  }
+
+  .hero__title {
+    font-size: clamp(34px, 10vw, 40px);
+    line-height: 1.05;
+  }
+
+  .hero__lede {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .hero__actions {
+    gap: 8px;
+  }
+
+  .hero__actions .btn {
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   SERVICES BUTTON — BLACK TEXT
+   ========================================= */
+
+.hero__actions .btn[href="/services"],
+.hero__actions .btn[href="/services"]:hover,
+.hero__actions .btn[href="/services"]:focus,
+.hero__actions .btn[href="/services"]:focus-visible {
+  color: #000000;
+  border-color: #000000;
+}
+
+/* =========================================
+   ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
   .hero__word {
     will-change: auto;
   }

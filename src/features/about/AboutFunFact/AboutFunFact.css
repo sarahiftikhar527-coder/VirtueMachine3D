@@ -1,3 +1,4 @@
+/* ================= BASE (DESKTOP) ================= */
 .about-funfact {
   position: relative;
   width: 100%;
@@ -21,6 +22,15 @@
   object-position: center;
   margin: 0 !important;
   padding: 0 !important;
+  will-change: transform, opacity;
+}
+
+.about-funfact__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: transparent;
 }
 
 .about-funfact__content {
@@ -47,6 +57,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  will-change: transform, opacity, filter;
 }
 
 .about-funfact__title {
@@ -54,20 +65,22 @@
   width: min(560px, 100%);
   margin: 0;
   color: #ffffff;
-  font-size: clamp(32px, 3.5vw, 48px);
-  line-height: 1.04;
-  letter-spacing: -0.045em;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
   font-weight: 800;
+  will-change: transform, opacity, filter;
 }
 
 .about-funfact__description {
   grid-column: 1;
   width: min(560px, 100%);
-  margin: 13px 0 0;
+  margin: 12px 0 0;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 13px;
+  font-size: 12.5px;
   line-height: 1.6;
   font-weight: 400;
+  will-change: transform, opacity, filter;
 }
 
 .about-funfact__stats {
@@ -79,13 +92,14 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 40px;
-  row-gap: 32px;
+  row-gap: 28px;
 }
 
 .about-funfact__stat {
   min-width: 0;
   margin: 0;
   padding: 0;
+  will-change: transform, opacity;
 }
 
 .about-funfact__number {
@@ -94,160 +108,158 @@
   margin: 0;
   padding: 0;
   color: #ffffff;
-  font-size: clamp(48px, 4.6vw, 70px);
-  line-height: 0.9;
-  letter-spacing: -0.07em;
-  font-weight: 900;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  font-weight: 800;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .about-funfact__number span {
-  margin-left: 4px;
+  margin-left: 3px;
   color: #ffffff;
-  font-size: 0.65em;
+  font-size: 0.6em;
   line-height: 1;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .about-funfact__stat p {
   width: 100%;
-  margin: 7px 0 0;
+  margin: 6px 0 0;
   padding: 0;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 11.5px;
   line-height: 1.35;
   font-weight: 500;
 }
 
+/* ================= SMALL LAPTOP / LARGE TABLET ================= */
 @media (max-width: 1050px) {
   .about-funfact {
-    height: 400px;
+    height: auto;
     min-height: 400px;
+    display: flex;
+    align-items: center;
   }
 
   .about-funfact__content {
     width: min(920px, calc(100% - 50px));
-    height: 100%;
-    padding: 25px 0;
+    height: auto;
+    padding: 40px 0;
     column-gap: 40px;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+  }
+
+  .about-funfact__title {
+    font-size: clamp(28px, 3.6vw, 36px);
   }
 
   .about-funfact__stats {
     max-width: 450px;
     column-gap: 28px;
-    row-gap: 30px;
+    row-gap: 26px;
   }
 
   .about-funfact__number {
-    font-size: clamp(44px, 5.2vw, 64px);
+    font-size: clamp(32px, 4vw, 44px);
   }
 
   .about-funfact__stat p {
-    font-size: 11px;
+    font-size: 11.5px;
   }
 }
 
-@media (max-width: 768px) {
+/* ================= TABLET (stacked layout) ================= */
+@media (max-width: 900px) {
   .about-funfact {
-    height: auto;
     min-height: 0;
-    margin: 0 !important;
-    padding: 0 !important;
+    display: block;
   }
 
-  .about-funfact__background {
-    width: 100%;
-    height: 100%;
-    object-position: center;
+  .about-funfact__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 11, 20, 0.55) 0%,
+      rgba(3, 11, 20, 0.35) 50%,
+      rgba(3, 11, 20, 0.6) 100%
+    );
   }
 
   .about-funfact__content {
-    width: calc(100% - 36px);
-    height: auto;
-    min-height: 0;
-    margin: 0 auto !important;
-    padding: 40px 0 42px;
+    width: min(760px, calc(100% - 50px));
+    padding: 48px 0 52px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
 
   .about-funfact__eyebrow {
-    margin: 0 0 9px;
+    margin: 0 0 10px;
+    font-size: 10px;
   }
 
   .about-funfact__title {
     width: 100%;
-    margin: 0;
-    font-size: clamp(30px, 7.5vw, 44px);
+    font-size: clamp(26px, 5vw, 36px);
   }
 
   .about-funfact__description {
     width: 100%;
-    max-width: 570px;
-    margin: 13px 0 0;
-    font-size: 12px;
-    line-height: 1.65;
+    max-width: 600px;
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.7;
   }
 
+  /* tablet pe 4 stats ek row mein */
   .about-funfact__stats {
     width: 100%;
-    max-width: 600px;
-    margin: 30px 0 0;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 35px;
-    row-gap: 30px;
+    max-width: none;
+    margin: 32px 0 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 24px;
   }
 
   .about-funfact__number {
-    font-size: clamp(44px, 9vw, 64px);
+    font-size: clamp(30px, 5vw, 42px);
   }
 
   .about-funfact__stat p {
-    margin: 7px 0 0;
-    font-size: 11px;
+    margin: 6px 0 0;
+    font-size: 12px;
   }
 }
 
-@media (max-width: 520px) {
-  .about-funfact {
-    height: auto;
-    min-height: 0;
-  }
-
-  .about-funfact__background {
-    width: 100%;
-    height: 100%;
-  }
-
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
   .about-funfact__content {
-    width: calc(100% - 28px);
-    padding: 35px 0 38px;
-  }
-
-  .about-funfact__eyebrow {
-    margin-bottom: 8px;
-    font-size: 9px;
+    width: calc(100% - 32px);
+    padding: 40px 0 44px;
   }
 
   .about-funfact__title {
-    font-size: clamp(28px, 9.5vw, 40px);
+    font-size: clamp(24px, 7vw, 32px);
+    line-height: 1.1;
   }
 
   .about-funfact__description {
     margin-top: 12px;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.65;
   }
 
+  /* mobile pe 2x2 grid */
   .about-funfact__stats {
     margin-top: 28px;
-    column-gap: 20px;
-    row-gap: 27px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 22px;
+    row-gap: 24px;
   }
 
   .about-funfact__number {
-    font-size: clamp(38px, 11vw, 54px);
+    font-size: clamp(28px, 8.5vw, 38px);
   }
 
   .about-funfact__number span {
@@ -255,7 +267,67 @@
   }
 
   .about-funfact__stat p {
-    margin-top: 6px;
-    font-size: 10px;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
+
+/* ================= SMALL PHONES ================= */
+@media (max-width: 380px) {
+  .about-funfact__content {
+    width: calc(100% - 28px);
+    padding: 36px 0 40px;
+  }
+
+  .about-funfact__eyebrow {
+    font-size: 9px;
+  }
+
+  .about-funfact__title {
+    font-size: clamp(22px, 7.4vw, 27px);
+  }
+
+  .about-funfact__description {
+    font-size: 12.5px;
+  }
+
+  .about-funfact__stats {
+    column-gap: 16px;
+    row-gap: 22px;
+  }
+
+  .about-funfact__number {
+    font-size: clamp(26px, 8.5vw, 32px);
+  }
+
+  .about-funfact__stat p {
+    font-size: 11px;
+  }
+}
+
+/* ================= LANDSCAPE PHONES ================= */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+  .about-funfact__content {
+    padding: 30px 0 34px;
+  }
+
+  .about-funfact__stats {
+    margin-top: 22px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .about-funfact__number {
+    font-size: clamp(26px, 4.6vw, 36px);
+  }
+}
+
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce) {
+  .about-funfact__background,
+  .about-funfact__eyebrow,
+  .about-funfact__title,
+  .about-funfact__description,
+  .about-funfact__stat {
+    will-change: auto;
   }
 }

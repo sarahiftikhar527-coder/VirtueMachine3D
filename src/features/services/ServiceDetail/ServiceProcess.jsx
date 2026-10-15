@@ -162,7 +162,8 @@ export default function ServiceProcess({ service }) {
   return (
     <section
       id="process"
-      className="relative isolate overflow-hidden border-t border-white/5 bg-[#080A08] py-16 text-[#F5F7F4] sm:py-20"
+      // SECTION POSITION: Poore black Process section ko upar lane ke liye negative margin.
+      className="relative isolate -mt-6 overflow-hidden border-t border-white/5 bg-[#080A08] py-16 text-[#F5F7F4] sm:-mt-8 sm:py-20"
     >
       <motion.div
         aria-hidden="true"

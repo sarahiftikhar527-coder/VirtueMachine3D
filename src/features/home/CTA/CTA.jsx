@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -34,6 +35,7 @@ const reveal = {
 export default function CTA() {
   return (
     <section className="cta" id="cta">
+      {/* Background video */}
       <div className="cta__background">
         <video
           className="cta__video"
@@ -43,11 +45,13 @@ export default function CTA() {
           loop
           playsInline
           preload="metadata"
+          aria-label="Precision manufacturing background video"
         />
 
         <div className="cta__overlay" />
       </div>
 
+      {/* CTA content */}
       <div className="cta__container">
         <motion.div
           className="cta__card"
@@ -56,38 +60,23 @@ export default function CTA() {
           whileInView="show"
           viewport={{
             once: true,
-            amount: 0.35,
+            amount: 0.25,
           }}
         >
-          <motion.h2
-            className="cta__title"
-            variants={reveal}
-          >
+          <motion.h2 className="cta__title" variants={reveal}>
             <span>TURNING DREAMS INTO</span>
             <span>REALITY BEGINS HERE</span>
           </motion.h2>
 
-          <motion.p
-            className="cta__text"
-            variants={reveal}
-          >
+          <motion.p className="cta__text" variants={reveal}>
             Bring your ideas to life with precision and purpose.
           </motion.p>
 
-          <motion.div
-            className="cta__action"
-            variants={reveal}
-          >
-            <Link
-              to="/contact"
-              className="cta__button"
-            >
+          <motion.div className="cta__action" variants={reveal}>
+            <Link to="/contact" className="cta__button">
               <span>GET STARTED</span>
 
-              <ArrowUpRight
-                size={18}
-                strokeWidth={2.2}
-              />
+              <ArrowUpRight size={18} strokeWidth={2.2} />
             </Link>
           </motion.div>
         </motion.div>

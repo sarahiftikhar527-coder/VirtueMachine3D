@@ -9,6 +9,8 @@ import FAQ from "@/pages/FAQ/FAQ.jsx";
 import Blog from "@/pages/Blog/Blog.jsx";
 import BlogArticlePage from "@/pages/Blog/BlogArticlePage.jsx";
 import Contact from "@/pages/Contact/Contact.jsx";
+import Terms from "@/pages/Terms/Terms.jsx";
+import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy.jsx";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogArticlePage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

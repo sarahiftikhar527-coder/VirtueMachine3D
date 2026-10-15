@@ -1,15 +1,12 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   NavLink,
   useLocation,
-  useNavigate,
 } from "react-router-dom";
 import {
   ChevronDown,
-  Menu,
-  Search,
+  Search as SearchIcon,
   X,
-  ArrowUpRight,
 } from "lucide-react";
 import Logo from "../Logo/Logo.jsx";
 import Button from "../../../components/ui/Button.jsx";
@@ -20,44 +17,23 @@ import {
 import { useScrolled } from "../../../hooks/useScrolled.js";
 import PagesDropdown from "./PagesDropdown.jsx";
 import MobileMenu from "./MobileMenu.jsx";
+import SearchComponent from "./Search.jsx";
 import "./navbar.css";
 import "./mobilemenu.css";
-
-const SEARCH_ITEMS = [
-  ...NAV_LINKS.map((item) => ({
-    label: item.label,
-    to: item.to,
-    type: "Navigation",
-  })),
-  ...PAGES_DROPDOWN.map((item) => ({
-    label: item.label,
-    to: item.to,
-    type: "Page",
-  })),
-  {
-    label: "Contact",
-    to: "/contact",
-    type: "Navigation",
-  },
-];
 
 export default function Navbar() {
   const scrolled = useScrolled(30);
   const location = useLocation();
-  const navigate = useNavigate();
-  const searchRef = useRef(null);
 
   const [pagesOpen, setPagesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobilePagesOpen, setMobilePagesOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setPagesOpen(false);
     setMobilePagesOpen(false);
     setSearchOpen(false);
-    setSearchQuery("");
     setMobileOpen(false);
   }, [location.pathname, location.hash]);
 
@@ -70,23 +46,6 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target)
-      ) {
-        setSearchOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 1100) {
         setMobileOpen(false);
@@ -94,10 +53,19 @@ export default function Navbar() {
       }
     };
 
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        setMobilePagesOpen(false);
+      }
+    };
+
     window.addEventListener("resize", handleResize);
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleEscape);
     };
   }, []);
 
@@ -107,41 +75,9 @@ export default function Navbar() {
     return location.pathname === base && base !== "/";
   });
 
-  const searchResults = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-
-    if (!query) {
-      return [];
-    }
-
-    return SEARCH_ITEMS.filter((item) => {
-      return (
-        item.label.toLowerCase().includes(query) ||
-        item.to.toLowerCase().includes(query)
-      );
-    }).slice(0, 6);
-  }, [searchQuery]);
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-
-    if (searchResults.length > 0) {
-      navigate(searchResults[0].to);
-      setSearchQuery("");
-      setSearchOpen(false);
-    }
-  };
-
-  const handleSearchResult = (to) => {
-    navigate(to);
-    setSearchQuery("");
-    setSearchOpen(false);
-  };
-
   const handleMobileOpen = () => {
     setPagesOpen(false);
     setSearchOpen(false);
-    setSearchQuery("");
     setMobileOpen(true);
   };
 
@@ -157,7 +93,6 @@ export default function Navbar() {
           scrolled ? "navbar--scrolled" : ""
         } ${mobileOpen ? "navbar--menu-open" : ""}`}
       >
-        {/* "container" removed so the white logo plate touches the left edge */}
         <div className="navbar__inner">
           <div className="navbar__plate">
             <Logo />
@@ -216,95 +151,29 @@ export default function Navbar() {
           </nav>
 
           <div className="navbar__right">
-            <div
-              ref={searchRef}
-              className={`navbar__search ${
-                searchOpen ? "is-open" : ""
-              }`}
-            >
+            <div className="navbar__search">
               <button
                 type="button"
                 className="navbar__search-button"
                 aria-label="Open search"
                 aria-expanded={searchOpen}
-                onClick={() => setSearchOpen(true)}
+                onClick={() => {
+                  setPagesOpen(false);
+                  setSearchOpen((value) => !value);
+                }}
               >
-                <Search size={19} strokeWidth={2.1} />
+                {searchOpen ? (
+                  <X size={19} strokeWidth={2.1} />
+                ) : (
+                  <SearchIcon size={19} strokeWidth={2.1} />
+                )}
               </button>
 
-              <div
-                className={`navbar__search-panel ${
-                  searchOpen ? "is-visible" : ""
-                }`}
-              >
-                <form
-                  className="navbar__search-form"
-                  onSubmit={handleSearchSubmit}
-                >
-                  <Search
-                    size={18}
-                    strokeWidth={2.2}
-                    className="navbar__search-form-icon"
-                  />
-
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(event) =>
-                      setSearchQuery(event.target.value)
-                    }
-                    placeholder="Search..."
-                    aria-label="Search website"
-                    autoFocus={searchOpen}
-                  />
-
-                  <button
-                    type="button"
-                    className="navbar__search-close"
-                    aria-label="Close search"
-                    onClick={() => {
-                      setSearchOpen(false);
-                      setSearchQuery("");
-                    }}
-                  >
-                    <X size={16} />
-                  </button>
-                </form>
-
-                {searchQuery.trim() && (
-                  <div className="navbar__search-results">
-                    {searchResults.length > 0 ? (
-                      searchResults.map((item) => (
-                        <button
-                          key={`${item.to}-${item.label}`}
-                          type="button"
-                          className="navbar__search-result"
-                          onClick={() => handleSearchResult(item.to)}
-                        >
-                          <span className="navbar__search-result-icon">
-                            <ArrowUpRight size={15} />
-                          </span>
-
-                          <span className="navbar__search-result-content">
-                            <span className="navbar__search-result-label">
-                              {item.label}
-                            </span>
-
-                            <span className="navbar__search-result-type">
-                              {item.type}
-                            </span>
-                          </span>
-                        </button>
-                      ))
-                    ) : (
-                      <div className="navbar__search-empty">
-                        <Search size={16} />
-                        <span>No results found</span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+              {searchOpen && (
+                <SearchComponent
+                  onClose={() => setSearchOpen(false)}
+                />
+              )}
             </div>
 
             <Button
@@ -317,7 +186,9 @@ export default function Navbar() {
 
             <button
               type="button"
-              className="navbar__burger"
+              className={`navbar__burger ${
+                mobileOpen ? "is-open" : ""
+              }`}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-navigation"
@@ -325,7 +196,11 @@ export default function Navbar() {
                 mobileOpen ? handleMobileClose : handleMobileOpen
               }
             >
-              {mobileOpen ? <X size={21} /> : <Menu size={21} />}
+              <span className="navbar__burger-lines" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
             </button>
           </div>
         </div>

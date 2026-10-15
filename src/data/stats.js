@@ -1,19 +1,27 @@
 export const STATS = [
-  { value: 10, suffix: 'K+', label: 'Printed Parts' },
-  { value: 50, suffix: '+', label: 'Materials' },
-  { text: '24/7', label: 'Production Capability' },
-  { value: 0.1, prefix: '±', decimals: 1, suffix: 'mm', label: 'Precision' },
-]
+  { value: 10, suffix: "K+", label: "Parts Delivered" },
+  { value: 50, suffix: "+", label: "Material Options" },
+  { text: "24/7", label: "Production Support" },
+  {
+    value: 0.1,
+    prefix: "±",
+    decimals: 1,
+    suffix: "mm",
+    label: "Precision Engineering",
+  },
+];
 
 export const HERO_TICKER = [
-  'FDM',
-  'SLA',
-  'SLS',
-  '±0.1MM PRECISION',
-  '50+ MATERIALS',
-  'ISO 9001:2015',
-  '48H TURNAROUND',
-  '10K+ PARTS DELIVERED',
-  'PA12-CF',
-  'DFM REVIEW INCLUDED',
-]
+  "FDM 3D PRINTING",
+  "SLA RESIN PRINTING",
+  "SLS 3D PRINTING",
+  "RAPID PROTOTYPING",
+  "PRODUCTION PARTS",
+  "CNC PRECISION PARTS",
+  "CUSTOM 3D PRINTING",
+  "±0.1MM PRECISION",
+  "50 ○ MATERIAL OPTIONS",
+  "DESIGN FOR MANUFACTURING",
+  "FUNCTIONAL PROTOTYPES",
+  "CNC PARTS PROCUREMENT",
+];

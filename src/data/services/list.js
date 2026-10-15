@@ -46,29 +46,31 @@ export const SERVICES = [
       ],
     },
   },
+
   {
-    id: "custom-3d-printing",
-    code: "SRV-03",
-    title: "Custom 3D Printing",
-    desc: "Bring complex geometries, custom designs and one-off ideas to life. From replacement parts to highly detailed components, we print exactly what your project requires.",
-    deliverables: [
-      "Custom geometries",
-      "Prototype parts",
-      "Replacement components",
-      "Multiple materials",
-      "Custom finishes",
+  id: "cnc-procurement",
+  code: "SRV-03",
+  title: "CNC Parts Procurement",
+  desc: "Source high-quality CNC precision parts through our specialized manufacturing partners. From custom-machined components to complex industrial parts, we coordinate sourcing, material selection, quality checks, and delivery to meet your project specifications.",
+  deliverables: [
+    "Precision CNC-machined parts",
+    "Custom components based on technical drawings",
+    "Specialized manufacturing partners",
+    "Material and finish options",
+    "Quality inspection coordination",
+    "Reliable order and delivery management",
+  ],
+  process: {
+    steps: [
+      { title: "SHARE YOUR REQUIREMENTS" },
+      { title: "SUBMIT CAD FILES OR DRAWINGS" },
+      { title: "REVIEW SPECIFICATIONS AND MATERIALS" },
+      { title: "SOURCE THROUGH SPECIALIZED PARTNERS" },
+      { title: "COORDINATE QUALITY INSPECTION" },
+      { title: "DELIVER YOUR CNC PARTS" },
     ],
-    process: {
-      steps: [
-        { title: "SHARE YOUR IDEA" },
-        { title: "REVIEW CUSTOM DESIGN" },
-        { title: "CHOOSE MATERIALS" },
-        { title: "PRINT CUSTOM PART" },
-        { title: "CHECK FINISH AND FIT" },
-        { title: "DELIVER YOUR ORDER" },
-      ],
-    },
   },
+},
   {
     id: "product-development",
     code: "SRV-04",
@@ -184,31 +186,5 @@ export const SERVICES = [
       ],
     },
     wide: true,
-  },
-  {
-    id: "cnc-procurement",
-    code: "SRV-09",
-    title: "CNC Parts Procurement",
-    desc: "Source precision-machined CNC parts through our network of specialized manufacturing partners. From custom prototypes to production-ready components, we help you find the right manufacturing capabilities, materials and finishes for your project.",
-    deliverables: [
-      "Precision CNC machined parts",
-      "Specialized manufacturing partners",
-      "Material and finish options",
-      "Custom specifications",
-      "Quality coordination",
-      "Prototype to production sourcing",
-    ],
-    process: {
-      steps: [
-        { title: "SUBMIT SPECIFICATIONS" },
-        { title: "GET QUICK QUOTES" },
-        { title: "SPECIFY MATERIALS" },
-        { title: "CNC PRODUCTION" },
-        { title: "QUALITY INSPECTION" },
-        { title: "GLOBAL SHIPPING" },
-      ],
-    },
-    featured: true,
-    wide: true,
-  },
+  }
 ];

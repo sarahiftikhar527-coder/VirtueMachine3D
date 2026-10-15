@@ -1,22 +1,45 @@
+
+/* =========================================
+   CTA — PREMIUM VIDEO BACKGROUND
+   Responsive desktop / laptop / tablet / mobile
+   ========================================= */
+
 .cta {
   position: relative;
+  isolation: isolate;
+  display: flow-root;
   width: 100%;
-  min-height: 540px;
+  height: auto;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow: hidden;
+  box-sizing: border-box;
   background: #b9f4dc;
   font-family: "Inter", sans-serif;
 }
 
+.cta *,
+.cta *::before,
+.cta *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   BACKGROUND VIDEO
+   ========================================= */
+
 .cta__background {
   position: absolute;
   inset: 0;
+  z-index: -1;
   overflow: hidden;
 }
 
 .cta__video {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   object-position: center;
 }
@@ -28,26 +51,37 @@
   pointer-events: none;
 }
 
+/* =========================================
+   MAIN CONTAINER — DESKTOP
+   ========================================= */
+
 .cta__container {
   position: relative;
-  z-index: 2;
-  width: min(1100px, calc(100% - 48px));
-  min-height: 540px;
-  margin: 0 auto;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 55px 0;
+  width: min(1100px, calc(100% - 48px));
+  height: auto;
+  min-height: 0 !important;
+  margin: 0 auto !important;
+  padding: 48px 0;
 }
 
+/* =========================================
+   CTA CARD — DESKTOP
+   ========================================= */
+
 .cta__card {
-  width: min(580px, 100%);
-  min-height: 315px;
-  padding: 44px 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: min(580px, 100%);
+  height: auto;
+  min-height: 0 !important;
+  margin: 0;
+  padding: 38px 44px;
   text-align: center;
   background: #071d35;
   color: #ffffff;
@@ -56,14 +90,19 @@
     0 8px 25px rgba(4, 25, 43, 0.12);
 }
 
+/* =========================================
+   HEADING
+   ========================================= */
+
 .cta__title {
   width: 100%;
   margin: 0;
+  color: #ffffff;
   font-size: clamp(31px, 3.6vw, 44px);
   line-height: 1.05;
   letter-spacing: -0.045em;
   font-weight: 800;
-  color: #ffffff;
+  overflow-wrap: break-word;
 }
 
 .cta__title span {
@@ -71,40 +110,56 @@
   white-space: nowrap;
 }
 
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
 .cta__text {
   max-width: 400px;
-  margin: 18px 0 25px;
-  font-size: 13px;
-  line-height: 1.65;
-  font-weight: 400;
+  margin: 16px 0 21px;
   color: rgba(255, 255, 255, 0.76);
+  font-size: 12px;
+  line-height: 1.65;
+  font-weight: 300;
 }
+
+/* =========================================
+   BUTTON WRAPPER
+   ========================================= */
 
 .cta__action {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
+
+/* =========================================
+   CTA BUTTON
+   ========================================= */
 
 .cta__button {
   position: relative;
-  width: 150px;
-  height: 46px;
-  padding: 0 18px;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
+  width: 150px;
+  height: 46px;
+  padding: 0 18px;
   overflow: hidden;
-  isolation: isolate;
+  border: none;
   background: #16a05d;
   color: #ffffff;
   text-decoration: none;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  border: none;
+  white-space: nowrap;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   box-shadow: 0 6px 18px rgba(22, 160, 93, 0.18);
   transition:
     transform 0.35s ease,
@@ -112,11 +167,14 @@
     box-shadow 0.35s ease;
 }
 
+/* Animated button reflection */
+
 .cta__button::before {
   content: "";
   position: absolute;
   top: -70%;
   left: -100%;
+  z-index: 1;
   width: 45%;
   height: 240%;
   background: linear-gradient(
@@ -131,18 +189,21 @@
   );
   transform: skewX(-22deg);
   animation: ctaButtonReflection 2.2s ease-in-out infinite;
-  z-index: 1;
   pointer-events: none;
 }
+
+/* Button border */
 
 .cta__button::after {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.16);
   z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   pointer-events: none;
 }
+
+/* Button content above reflection */
 
 .cta__button span,
 .cta__button svg {
@@ -151,76 +212,164 @@
 }
 
 .cta__button svg {
+  flex-shrink: 0;
   transition: transform 0.35s ease;
 }
 
-.cta__button:hover {
-  transform: translateY(-3px);
-  background: #20b96d;
-  box-shadow: 0 10px 25px rgba(22, 160, 93, 0.3);
+/* Hover effects */
+
+@media (hover: hover) {
+  .cta__button:hover {
+    transform: translateY(-3px);
+    background: #20b96d;
+    box-shadow: 0 10px 25px rgba(22, 160, 93, 0.3);
+  }
+
+  .cta__button:hover svg {
+    transform: translate(3px, -3px);
+  }
 }
 
-.cta__button:hover svg {
-  transform: translate(3px, -3px);
+.cta__button:active {
+  transform: scale(0.97);
 }
+
+.cta__button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* Reflection animation */
 
 @keyframes ctaButtonReflection {
   0% {
     left: -100%;
   }
 
-  35% {
-    left: 135%;
-  }
-
+  35%,
   100% {
     left: 135%;
   }
 }
 
-@media (max-width: 900px) {
-  .cta {
-    min-height: 500px;
-  }
+/* =========================================
+   LARGE SCREENS — 1600px+
+   ========================================= */
 
+@media (min-width: 1600px) {
   .cta__container {
-    min-height: 500px;
-    width: min(100% - 36px, 720px);
-    padding: 45px 0;
+    width: min(1300px, calc(100% - 96px));
+    padding: 64px 0;
   }
 
   .cta__card {
-    width: min(560px, 100%);
-    min-height: 305px;
-    padding: 42px 45px;
+    width: min(660px, 100%);
+    padding: 46px 52px;
   }
 
   .cta__title {
-    font-size: 38px;
+    font-size: 50px;
+  }
+
+  .cta__text {
+    max-width: 460px;
+    font-size: 14px;
+  }
+
+  .cta__button {
+    width: 168px;
+    height: 50px;
+    font-size: 12px;
   }
 }
 
-@media (max-width: 600px) {
+/* =========================================
+   SMALL LAPTOP — 901px TO 1100px
+   ========================================= */
+
+@media (min-width: 901px) and (max-width: 1100px) {
+  .cta__container {
+    width: calc(100% - 56px);
+    padding: 40px 0;
+  }
+
+  .cta__card {
+    width: min(520px, 100%);
+    padding: 34px 36px;
+  }
+
+  .cta__title {
+    font-size: clamp(30px, 3.8vw, 38px);
+  }
+}
+
+/* =========================================
+   TABLET — 601px TO 900px
+   Slightly more space below CTA
+   ========================================= */
+
+@media (min-width: 601px) and (max-width: 900px) {
   .cta {
-    min-height: 470px;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .cta__container {
-    width: min(100% - 28px, 540px);
-    min-height: 470px;
-    padding: 32px 0;
+    width: calc(100% - 40px);
+    padding: 14px 0 22px;
+  }
+
+  .cta__card {
+    width: min(420px, 100%);
+    padding: 22px 24px;
+  }
+
+  .cta__title {
+    font-size: clamp(25px, 3.8vw, 31px);
+    line-height: 1.1;
+  }
+
+  .cta__text {
+    max-width: 320px;
+    margin: 9px 0 12px;
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+
+  .cta__button {
+    width: 140px;
+    height: 40px;
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================
+   MOBILE — UP TO 600px
+   Compact card + small bottom spacing
+   ========================================= */
+
+@media (max-width: 600px) {
+  .cta {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .cta__container {
+    width: calc(100% - 28px);
+    margin: 0 auto !important;
+    padding: 8px 0 16px;
   }
 
   .cta__card {
     width: 100%;
-    min-height: 300px;
-    padding: 38px 22px;
+    max-width: 340px;
+    padding: 18px 15px;
   }
 
   .cta__title {
-    font-size: 29px;
-    line-height: 1.07;
-    letter-spacing: -0.04em;
+    font-size: clamp(22px, 5.8vw, 26px);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
   }
 
   .cta__title span {
@@ -228,17 +377,115 @@
   }
 
   .cta__text {
-    max-width: 320px;
-    margin: 17px 0 23px;
-    font-size: 12.5px;
+    max-width: 280px;
+    margin: 9px 0 12px;
+    font-size: 11.5px;
+    line-height: 1.5;
   }
 
   .cta__button {
-    width: 145px;
-    height: 45px;
+    width: 140px;
+    max-width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 10px;
+  }
+
+  .cta__button svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE — UP TO 380px
+   ========================================= */
+
+@media (max-width: 380px) {
+  .cta__container {
+    width: calc(100% - 20px);
+    padding: 6px 0 14px;
+  }
+
+  .cta__card {
+    max-width: 310px;
+    padding: 16px 12px;
+  }
+
+  .cta__title {
+    font-size: 21px;
+  }
+
+  .cta__text {
+    max-width: 250px;
+    margin: 8px 0 10px;
+    font-size: 11px;
+  }
+
+  .cta__button {
+    width: 136px;
+    height: 38px;
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE — UP TO 320px
+   ========================================= */
+
+@media (max-width: 320px) {
+  .cta__container {
+    width: calc(100% - 16px);
+    padding-bottom: 12px;
+  }
+
+  .cta__card {
+    padding: 15px 10px;
+  }
+
+  .cta__title {
+    font-size: 19px;
+  }
+
+  .cta__text {
     font-size: 10.5px;
   }
 }
+
+/* =========================================
+   MOBILE LANDSCAPE — SHORT SCREENS
+   ========================================= */
+
+@media (max-height: 480px) and (orientation: landscape) {
+  .cta__container {
+    padding: 12px 0 18px;
+  }
+
+  .cta__card {
+    max-width: 440px;
+    padding: 16px 20px;
+  }
+
+  .cta__title {
+    font-size: clamp(20px, 4vw, 26px);
+  }
+
+  .cta__title span {
+    white-space: nowrap;
+  }
+
+  .cta__text {
+    margin: 7px 0 10px;
+  }
+
+  .cta__button {
+    height: 38px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .cta__button,
